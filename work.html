@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Solène Su Cheng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* === page header === */
+.page-head{padding:160px 40px 60px;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:end}
+.page-head .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:var(--peach);display:block;margin-bottom:16px}
+.page-head h1{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(56px,9vw,128px);line-height:.95;margin:0;letter-spacing:.04em}
+.page-head .desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--ink-mute);max-width:520px;margin:0}
+
+/* === works === */
+.works{padding:60px 40px 140px;max-width:1320px;margin:0 auto}
+.works-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:32px}
+.work-card{position:relative;background:var(--bg-soft);overflow:hidden;display:block}
+.work-card .frame{overflow:hidden;position:relative;background:var(--bg-soft)}
+.work-card .frame.r43{aspect-ratio:4/3}
+.work-card .frame.r34{aspect-ratio:3/4}
+.work-card .frame.r219{aspect-ratio:21/9}
+.work-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter 1.4s var(--ease);filter:saturate(.95) brightness(1)}
+.work-card:hover img{transform:scale(1.04);filter:saturate(1.05) brightness(1.02)}
+.work-card .meta{position:absolute;left:0;right:0;bottom:0;padding:24px 26px;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.work-card:hover .meta{opacity:1;transform:translateY(0)}
+.work-card .meta .t{font-family:'Noto Serif TC',serif;font-weight:400;font-size:18px;letter-spacing:.04em;margin:0 0 4px}
+.work-card .meta .s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;opacity:.85;letter-spacing:.06em;margin:0}
+
+.w-knives{grid-column:span 7}
+.w-tears{grid-column:span 5}
+.w-exhibition{grid-column:span 12}
+.w-publication{grid-column:span 5}
+.w-archive{grid-column:span 7}
+
+/* single project page link */
+.work-card{position:relative}
+.work-card .perma{position:absolute;inset:0;z-index:1}
+
+/* page nav (prev/next) */
+.page-nav{padding:60px 40px;max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;border-top:1px solid var(--rule);margin-top:40px}
+.page-nav a{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-mute);transition:color .3s}
+.page-nav a:hover{color:var(--peach)}
+
+@media (max-width:960px){
+  .page-head{grid-template-columns:1fr;gap:24px;padding:120px 20px 40px}
+  .works{padding:40px 20px 80px}
+  .works-grid{grid-template-columns:1fr;gap:18px}
+  .w-knives,.w-tears,.w-exhibition,.w-publication,.w-archive{grid-column:span 1}
+  .page-nav{flex-direction:column;gap:16px;padding:40px 20px}
+}
+</style>
+</head>
+<body data-active="zh">
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="brand">
+    <span class="b-zh">骨子</span>
+    <span class="b-en">Knives</span>
+  </a>
+  <div class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="info.html">Information</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="lang-toggle">
+    <button class="active" data-set-lang="zh">中</button>
+    <span style="opacity:.3">/</span>
+    <button data-set-lang="en">EN</button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div>
+    <span class="num">02 —</span>
+    <h1 class="lang-block">
+      <span data-lang="zh">作品</span>
+      <span data-lang="en">Work</span>
+    </h1>
+  </div>
+  <p class="desc lang-block">
+    <span data-lang="zh">從 2018 年的私寫文字，到 2025 年的 KNIVES 個展——影像與文字在這七年間交替生長。</span>
+    <span data-lang="en">From 2018 private writing to the 2025 KNIVES solo show — image and text have grown in alternation over seven years.</span>
+  </p>
+</header>
+
+<section class="works">
+  <div class="works-grid">
+    <a class="work-card w-knives reveal" href="#knives">
+      <span class="perma"></span>
+      <div class="frame r43"><img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt="KNIVES"></div>
+      <div class="meta">
+        <h3 class="t">骨子 Knives</h3>
+        <p class="s">Photography × Words · 2023–2025</p>
+      </div>
+    </a>
+    <a class="work-card w-tears reveal reveal-d1" href="#">
+      <span class="perma"></span>
+      <div class="frame r43"><img src="img_web/94775f56__476f09b2-7f9c-457c-9a10-bdaf1c80576e.jpg" alt="Tears Collection"></div>
+      <div class="meta">
+        <h3 class="t">Tears Collection</h3>
+        <p class="s">Lyrical Photography · 2022</p>
+      </div>
+    </a>
+    <a class="work-card w-exhibition reveal" href="#">
+      <span class="perma"></span>
+      <div class="frame r219"><img src="img_web/040610a8__37f1bdcc-9c0e-4c7b-8d9d-5a6aec3d89e1.jpg" alt="Installation"></div>
+      <div class="meta">
+        <h3 class="t lang-block">
+          <span data-lang="zh">展場 · 摺頁文字牆</span>
+          <span data-lang="en">Installation — Folded Pages Wall</span>
+        </h3>
+        <p class="s">butter room · 2025</p>
+      </div>
+    </a>
+    <a class="work-card w-publication reveal reveal-d1" href="#">
+      <span class="perma"></span>
+      <div class="frame r34"><img src="img_web/451af8f9__9b1afd48-9702-40c7-b52b-35e436ce232a.jpg" alt=""></div>
+      <div class="meta">
+        <h3 class="t">@anti.detox</h3>
+        <p class="s lang-block">
+          <span data-lang="zh">私寫 · 2018—</span>
+          <span data-lang="en">Private Writing · 2018—</span>
+        </p>
+      </div>
+    </a>
+    <a class="work-card w-archive reveal" href="#">
+      <span class="perma"></span>
+      <div class="frame r34"><img src="img_web/2af56f8d__ccb66f37-b5d4-4cb1-87c1-edc692a4a61d.jpg" alt=""></div>
+      <div class="meta">
+        <h3 class="t lang-block">
+          <span data-lang="zh">早期作品 · 紗簾裝置</span>
+          <span data-lang="en">Archive — Tulle Installation</span>
+        </h3>
+        <p class="s lang-block">
+          <span data-lang="zh">互動裝置 · 2020</span>
+          <span data-lang="en">Interactive · 2020</span>
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <div class="page-nav">
+    <a href="index.html" data-lang="zh">← Home</a>
+    <a href="index.html" data-lang="en" style="display:none">← Home</a>
+    <a href="info.html" data-lang="zh">Information →</a>
+    <a href="info.html" data-lang="en" style="display:none">Information →</a>
+  </div>
+
+  <div class="footer-meta">
+    <span>© 2025 Solène Su Cheng · 程昭漫</span>
+    <span>Built in Macao · 澳門</span>
+  </div>
+</section>
+
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solène Su Cheng — 骨子 Knives</title>
+<meta name="description" content="Solène Su Cheng (程昭漫) — Macau-based artist. Photography × Words.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* === home cover === */
+.cover{position:relative;min-height:100vh;padding:0 40px;display:grid;place-items:center;overflow:hidden;background:var(--bg)}
+.cover-inner{position:relative;width:100%;max-width:1400px;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
+.cover-text{position:relative;z-index:2}
+.cover-eyebrow{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:32px;display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) .2s forwards}
+.cover-eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--peach)}
+.cover-title{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(72px,12vw,180px);line-height:.92;letter-spacing:.04em;margin:0;color:var(--ink);position:relative}
+.cover-title .char{display:inline-block;opacity:0;transform:translateY(60px) rotate(2deg);animation:charRise 1.2s var(--ease) forwards}
+.cover-title .zh{display:block}
+.cover-title .en{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.45em;color:var(--peach);letter-spacing:.18em;display:block;margin-top:18px;padding-left:.04em}
+.cover-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.5;color:var(--ink-soft);margin:36px 0 0;max-width:440px;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) 1.4s forwards}
+.cover-meta{position:absolute;bottom:60px;left:0;display:flex;gap:32px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:rise .9s var(--ease) 1.6s forwards}
+.cover-meta b{font-weight:500;color:var(--ink);display:block;font-size:12px;letter-spacing:.18em;text-transform:none;margin-top:6px;font-family:'Noto Serif TC',serif}
+.cover-scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:fadein 1.2s var(--ease) 2s forwards}
+.cover-scroll::after{content:"";display:block;width:1px;height:36px;background:var(--ink-mute);margin:14px auto 0;animation:scrollpulse 2.4s var(--ease) infinite}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+@keyframes charRise{to{opacity:1;transform:translateY(0) rotate(0)}}
+@keyframes fadein{to{opacity:.7}}
+@keyframes scrollpulse{0%,100%{transform:scaleY(1);opacity:.4}50%{transform:scaleY(1.3);opacity:1}}
+
+.cover-art{position:relative;height:80vh;display:flex;align-items:center;justify-content:center;perspective:1200px}
+.cover-art .layer{position:absolute;border-radius:2px;box-shadow:0 30px 80px rgba(28,26,24,.18);overflow:hidden;will-change:transform}
+.cover-art .layer img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-art .l1{width:62%;height:80%;top:8%;left:8%;z-index:2;transform:rotate(-3deg)}
+.cover-art .l2{width:48%;height:62%;bottom:4%;right:2%;z-index:1;transform:rotate(4deg);opacity:.95}
+.cover-art .l3{width:32%;height:38%;top:18%;right:18%;z-index:3;transform:rotate(-1deg)}
+
+/* === preview cards (link to work page) === */
+.preview{padding:80px 40px 140px;max-width:1320px;margin:0 auto}
+.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.preview-card{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg-soft)}
+.preview-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.preview-card:hover img{transform:scale(1.05);filter:saturate(1.05)}
+.preview-card .tag{position:absolute;top:24px;left:24px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:#fff;background:rgba(28,26,24,.6);padding:6px 10px;backdrop-filter:blur(4px);z-index:2}
+.preview-card .label{position:absolute;left:0;right:0;bottom:0;padding:32px 28px;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);color:#fff;z-index:2}
+.preview-card .label .t{font-family:'Noto Serif TC',serif;font-weight:400;font-size:24px;letter-spacing:.04em;margin:0 0 4px}
+.preview-card .label .s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;opacity:.85;letter-spacing:.06em}
+.preview-card .arrow{position:absolute;top:24px;right:24px;width:36px;height:36px;border:1px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;z-index:2;font-size:14px;transition:transform .4s var(--ease),background .3s}
+.preview-card:hover .arrow{transform:translate(4px,-4px) rotate(-45deg);background:rgba(255,255,255,.15)}
+
+@media (max-width:960px){
+  .cover-inner{grid-template-columns:1fr;padding:100px 20px 60px;gap:32px;height:auto;min-height:90vh}
+  .cover-art{height:50vh;order:-1}
+  .cover-art .l1{width:60%;left:6%;height:80%}
+  .cover-art .l2{width:42%;right:6%;height:55%}
+  .cover-art .l3{display:none}
+  .cover-meta{position:static;margin-top:36px;flex-wrap:wrap;gap:18px}
+  .preview{padding:60px 20px 80px}
+  .preview-grid{grid-template-columns:1fr;gap:18px}
+}
+@media (max-width:480px){
+  .cover-title{font-size:64px}
+  .cover-art{height:40vh}
+}
+</style>
+</head>
+<body data-active="zh">
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="brand">
+    <span class="b-zh">骨子</span>
+    <span class="b-en">Knives</span>
+  </a>
+  <div class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="info.html">Information</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="lang-toggle">
+    <button class="active" data-set-lang="zh">中</button>
+    <span style="opacity:.3">/</span>
+    <button data-set-lang="en">EN</button>
+  </div>
+</nav>
+
+<header class="cover" id="top">
+  <div class="cover-inner">
+    <div class="cover-text">
+      <div class="cover-eyebrow">
+        <span data-lang="zh">Portfolio · 作品集 · 2018 —</span>
+        <span data-lang="en">Portfolio · 2018 —</span>
+      </div>
+      <h1 class="cover-title">
+        <span class="zh" data-lang="zh"><span class="char">S</span><span class="char">o</span><span class="char">l</span><span class="char">è</span><span class="char">n</span><span class="char">e</span></span>
+        <span class="zh" data-lang="en"><span class="char">S</span><span class="char">o</span><span class="char">l</span><span class="char">è</span><span class="char">n</span><span class="char">e</span></span>
+        <span class="en" data-lang="zh">Su Cheng · 程昭漫</span>
+        <span class="en" data-lang="en">Su Cheng · 程昭漫</span>
+      </h1>
+      <p class="cover-sub lang-block">
+        <span data-lang="zh">攝影 × 文字 · 陶瓷 · 影像裝置。澳門，1998 —</span>
+        <span data-lang="en">Photography × Words · Ceramics · Installation. Macau, 1998 —</span>
+      </p>
+      <div class="cover-meta">
+        <span>
+          <span data-lang="zh">最新展覽</span>
+          <span data-lang="en">Latest Exhibition</span>
+          <b data-lang="zh">骨子 Knives</b>
+          <b data-lang="en">Knives</b>
+        </span>
+        <span>
+          <span data-lang="zh">地點</span>
+          <span data-lang="en">Venue</span>
+          <b>butter room · 澳門 Macau</b>
+        </span>
+        <span>
+          <span data-lang="zh">展期</span>
+          <span data-lang="en">Dates</span>
+          <b>2025.06.19 — 07.13</b>
+        </span>
+      </div>
+    </div>
+    <div class="cover-art" id="coverArt">
+      <div class="layer l1" data-base-transform="rotate(-3deg)"><img src="img_web/71c6723a__c035406c-e085-4d7b-9cf5-20fa96134923.jpg" alt=""></div>
+      <div class="layer l2" data-base-transform="rotate(4deg)"><img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt=""></div>
+      <div class="layer l3" data-base-transform="rotate(-1deg)"><img src="img_web/1abf418a__21c6aaec-833b-45a3-bfe5-c2a4d2fc9604.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="cover-scroll">SCROLL</div>
+</header>
+
+<section class="preview">
+  <div class="eyebrow lang-block" style="margin-bottom:48px">
+    <span data-lang="zh">探索</span>
+    <span data-lang="en">Explore</span>
+  </div>
+  <div class="preview-grid">
+    <a class="preview-card" href="work.html">
+      <span class="tag">01 / Work</span>
+      <span class="arrow">→</span>
+      <img src="img_web/040610a8__37f1bdcc-9c0e-4c7b-8d9d-5a6aec3d89e1.jpg" alt="">
+      <div class="label">
+        <h3 class="t lang-block">
+          <span data-lang="zh">作品</span>
+          <span data-lang="en">Work</span>
+        </h3>
+        <p class="s lang-block">
+          <span data-lang="zh">KNIVES · Tears Collection · 摺頁文字牆 · 早期裝置</span>
+          <span data-lang="en">KNIVES · Tears · Folded pages · Earlier works</span>
+        </p>
+      </div>
+    </a>
+    <a class="preview-card" href="info.html">
+      <span class="tag">02 / Information</span>
+      <span class="arrow">→</span>
+      <img src="img_web/2af56f8d__ccb66f37-b5d4-4cb1-87c1-edc692a4a61d.jpg" alt="">
+      <div class="label">
+        <h3 class="t lang-block">
+          <span data-lang="zh">資訊</span>
+          <span data-lang="en">Information</span>
+        </h3>
+        <p class="s lang-block">
+          <span data-lang="zh">Artist bio · 展歷 · 學歷 · 推薦引言</span>
+          <span data-lang="en">Bio · Exhibitions · Education · Press</span>
+        </p>
+      </div>
+    </a>
+    <a class="preview-card" href="contact.html">
+      <span class="tag">03 / Contact</span>
+      <span class="arrow">→</span>
+      <img src="img_web/451af8f9__9b1afd48-9702-40c7-b52b-35e436ce232a.jpg" alt="">
+      <div class="label">
+        <h3 class="t lang-block">
+          <span data-lang="zh">聯絡</span>
+          <span data-lang="en">Contact</span>
+        </h3>
+        <p class="s lang-block">
+          <span data-lang="zh">展覽合作 · 駐場申請 · 影像委託</span>
+          <span data-lang="en">Collaborations · Residencies · Commissions</span>
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer-meta">
+    <span>© 2025 Solène Su Cheng · 程昭漫</span>
+    <span>Built in Macao · 澳門</span>
+  </div>
+</section>
+
+<script src="site.js"></script>
+</body>
+</html>
