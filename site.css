@@ -1,16 +1,16 @@
 /* site.css — shared across all 4 pages */
 :root{
-  --bg:#f3efe8;
-  --bg-soft:#ebe5db;
-  --ink:#1c1a18;
-  --ink-soft:#3d3935;
-  --ink-mute:#6b655e;
-  --line:#d6cfc3;
-  --peach:#e89a7a;
-  --peach-soft:#f3c8b3;
-  --teal:#7ba89c;
-  --teal-soft:#a8c5bb;
-  --rule:rgba(28,26,24,.12);
+  --bg:#ffffff;
+  --bg-soft:#f6f6f4;
+  --ink:#171717;
+  --ink-soft:#3b3b38;
+  --ink-mute:#77736e;
+  --line:#dedbd6;
+  --peach:#b46f5d;
+  --peach-soft:#e8d2c9;
+  --teal:#6e9088;
+  --teal-soft:#c8d7d2;
+  --rule:rgba(23,23,23,.12);
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -26,7 +26,7 @@ body{animation:pageFadeIn .8s var(--ease) both}
 
 /* nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;transition:background .4s,border-color .4s,padding .3s}
-.nav.scrolled{background:rgba(243,239,232,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);padding:14px 40px}
+.nav.scrolled{background:rgba(255,255,255,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);padding:14px 40px}
 .brand{display:flex;align-items:baseline;gap:14px}
 .brand .b-zh{font-family:'Noto Serif TC',serif;font-size:14px;letter-spacing:.3em;font-weight:400}
 .brand .b-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--ink-mute);letter-spacing:.12em}

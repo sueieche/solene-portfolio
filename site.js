@@ -48,6 +48,7 @@
   const cover = document.getElementById('coverArt');
   if (cover && window.matchMedia('(hover: hover)').matches) {
     const layers = cover.querySelectorAll('.layer');
+    if (!layers.length) return;
     let raf = null;
     window.addEventListener('mousemove', e => {
       if (raf) cancelAnimationFrame(raf);
