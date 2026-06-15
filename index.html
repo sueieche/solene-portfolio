@@ -7,210 +7,589 @@
 <meta name="description" content="Solène Su Cheng (程昭漫) — Macau-based artist. Photography × Words.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+TC:wght@100;200;300;400;500&family=Noto+Serif+TC:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <style>
-/* === home cover === */
-.cover{position:relative;min-height:100vh;padding:0 40px 56px;overflow:hidden;background:#fff}
-.cover-strip{position:relative;z-index:2;margin:0 -40px;display:grid;grid-template-columns:repeat(8,1fr);height:17vh;min-height:118px;overflow:hidden;background:var(--bg-soft)}
-.cover-strip img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(.96)}
-.cover-inner{position:relative;width:100%;max-width:1420px;margin:0 auto;min-height:calc(83vh - 56px);display:grid;grid-template-columns:minmax(320px,42vw) 1px 1fr;gap:34px;align-items:start;padding-top:8vh}
-.cover-art{position:relative;width:100%;height:min(66vh,720px);overflow:hidden;background:#fff;opacity:0;transform:translateY(18px);animation:rise 1s var(--ease) .2s forwards}
-.cover-art img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:saturate(.9) contrast(.95)}
-.cover-rule{width:1px;height:min(66vh,720px);background:var(--ink);opacity:.82;transform-origin:top;transform:scaleY(0);animation:ruleDrop 1s var(--ease) .45s forwards}
-.cover-text{position:relative;z-index:2;display:grid;grid-template-columns:1fr;min-height:min(66vh,720px);padding:4px 0 0 6px}
-.cover-eyebrow{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 18px;display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(16px);animation:rise .9s var(--ease) .55s forwards}
-.cover-eyebrow::before{content:"";display:inline-block;width:28px;height:1px;background:var(--ink)}
-.cover-title{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(42px,7vw,108px);line-height:.98;letter-spacing:.06em;margin:0;color:var(--ink);position:relative;opacity:0;transform:translateY(20px);animation:rise 1s var(--ease) .75s forwards}
-.cover-title .char{display:inline-block}
-.cover-title .zh{display:block}
-.cover-title .en{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.32em;color:var(--ink-soft);letter-spacing:.18em;display:block;margin-top:12px;padding-left:.02em}
-.cover-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.55;color:var(--ink-soft);margin:24px 0 0;max-width:360px;opacity:0;transform:translateY(16px);animation:rise .9s var(--ease) .95s forwards}
-.cover-meta{align-self:end;display:grid;grid-template-columns:repeat(3,minmax(120px,1fr));gap:20px;max-width:620px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:rise .9s var(--ease) 1.15s forwards}
-.cover-meta b{font-weight:400;color:var(--ink);display:block;font-size:11px;letter-spacing:.14em;text-transform:none;margin-top:6px;font-family:'Noto Serif TC',serif}
-.cover-mini{position:absolute;right:0;bottom:0;display:grid;grid-template-columns:88px 180px;gap:16px;align-items:end;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:rise .9s var(--ease) 1.3s forwards}
-.cover-mini img{width:88px;aspect-ratio:1/1;object-fit:cover;filter:saturate(.9) contrast(.95)}
-.cover-scroll{position:absolute;right:40px;bottom:24px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:fadein 1.2s var(--ease) 1.8s forwards}
-@keyframes rise{to{opacity:1;transform:translateY(0)}}
-@keyframes fadein{to{opacity:.65}}
-@keyframes ruleDrop{to{transform:scaleY(1)}}
+html,body{background:#ffffff !important;background-color:#ffffff !important}
 
-/* === preview cards (link to work page) === */
-.preview{padding:80px 40px 140px;max-width:1320px;margin:0 auto}
-.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.preview-card{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg-soft)}
-.preview-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
-.preview-card:hover img{transform:scale(1.05);filter:saturate(1.05)}
-.preview-card .tag{position:absolute;top:24px;left:24px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:#fff;background:rgba(28,26,24,.6);padding:6px 10px;backdrop-filter:blur(4px);z-index:2}
-.preview-card .label{position:absolute;left:0;right:0;bottom:0;padding:32px 28px;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);color:#fff;z-index:2}
-.preview-card .label .t{font-family:'Noto Serif TC',serif;font-weight:400;font-size:24px;letter-spacing:.04em;margin:0 0 4px}
-.preview-card .label .s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;opacity:.85;letter-spacing:.06em}
-.preview-card .arrow{position:absolute;top:24px;right:24px;width:36px;height:36px;border:1px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;z-index:2;font-size:14px;transition:transform .4s var(--ease),background .3s}
-.preview-card:hover .arrow{transform:translate(4px,-4px) rotate(-45deg);background:rgba(255,255,255,.15)}
-
-@media (max-width:960px){
-  .cover{padding:0 20px 56px}
-  .cover-strip{margin:0 -20px;grid-template-columns:repeat(4,1fr);height:13vh;min-height:86px}
-  .cover-strip img:nth-child(n+5){display:none}
-  .cover-inner{grid-template-columns:1fr;gap:22px;min-height:auto;padding-top:42px}
-  .cover-art{height:54vh;max-height:560px}
-  .cover-rule{display:none}
-  .cover-text{min-height:auto;padding:0}
-  .cover-meta{grid-template-columns:1fr;margin-top:42px}
-  .cover-mini{position:relative;right:auto;bottom:auto;margin-top:44px;grid-template-columns:76px 1fr}
-  .cover-mini img{width:76px}
-  .cover-scroll{display:none}
-  .preview{padding:60px 20px 80px}
-  .preview-grid{grid-template-columns:1fr;gap:18px}
+/* === SPLASH (layer 1) === */
+.splash{
+  position:fixed;inset:0;z-index:100;
+  background:#ffffff !important;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:32px;
+  padding:60px 56px;
+  cursor:pointer;
+  transition:none;     /* 瞬間隱藏 */
+  overflow:hidden;
 }
-@media (max-width:480px){
-  .cover-title{font-size:52px}
-  .cover-art{height:46vh}
+.splash.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  display:none;        /* 真正從渲染樹移除，避免字殘留 */
+}
+
+/* 純白過渡層（瞬間切換） */
+.fade-tint{
+  position:fixed;inset:0;z-index:150;
+  background:#ffffff !important;
+  opacity:0;visibility:hidden;
+  pointer-events:none;
+  transition:none;
+}
+.fade-tint.in{opacity:1;visibility:visible}
+
+.splash .col{
+  display:flex;flex-direction:column;justify-content:flex-start;
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:200;
+  color:#7ba89c;
+  font-size:13px;
+  line-height:2.1;
+  letter-spacing:.06em;
+  overflow:hidden;
+}
+.splash .col .line{
+  opacity:0;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.splash .col .line.in{animation:typeIn .5s var(--ease) forwards}
+@keyframes typeIn{
+  from{opacity:0;transform:translateX(-4px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* top hint */
+.splash-hint{
+  position:absolute;top:24px;left:56px;right:56px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;
+  text-transform:uppercase;color:#7ba89c;opacity:.55;
+  pointer-events:none;
+}
+
+/* brand mark in corner */
+.splash-mark{
+  position:absolute;bottom:24px;left:56px;
+  font-family:'Noto Serif TC',serif;font-weight:300;
+  font-size:11px;letter-spacing:.4em;color:#7ba89c;
+  opacity:.5;pointer-events:none;
+}
+
+/* bottom poster — 海報圖（16:9 landscape，無白底陰影） */
+.splash-poster{
+  position:absolute;bottom:60px;right:60px;
+  width:260px;aspect-ratio:16/9;     /* landscape */
+  background:url("img_web/poster_v3.png") center/cover;
+  background-color:transparent;
+  box-shadow:none;
+  outline:none;
+  border:none;
+  opacity:0;animation:fadeUp 1.4s var(--ease) 4.5s forwards;
+  pointer-events:none;
+  filter:drop-shadow(0 4px 16px rgba(28,26,24,.08));
+}
+.splash-enter{
+  position:absolute;bottom:80px;right:60px;
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.42em;
+  text-transform:uppercase;color:#7ba89c;opacity:0;
+  display:none;     /* 關閉「點擊進入」字 */
+
+  animation:fadeUp 1s var(--ease) 5.2s forwards;
+  pointer-events:none;
+  text-align:right;width:160px;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* === HOME (layer 2) === */
+.home{
+  opacity:1;            /* 永遠不透明 */
+  background:#ffffff !important;
+  transition:none;      /* 不淡入 */
+}
+
+/* === home content styles (kept from previous) === */
+.cover{position:relative;min-height:100vh;padding:0 40px;display:grid;place-items:center;overflow:hidden;background:#ffffff !important}
+.cover-inner{position:relative;width:100%;max-width:1400px;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
+.cover-text{position:relative;z-index:2}
+.cover-eyebrow{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:32px;display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) .2s forwards}
+.cover-eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--peach)}
+.cover-title{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(72px,12vw,180px);line-height:.92;letter-spacing:.04em;margin:0;color:var(--ink);position:relative}
+.cover-title .char{display:inline-block;opacity:0;transform:translateY(60px) rotate(2deg);animation:charRise 1.2s var(--ease) forwards}
+.cover-title .zh{display:block}
+.cover-title .en{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.45em;color:var(--peach);letter-spacing:.18em;display:block;margin-top:18px;padding-left:.04em}
+.cover-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.5;color:var(--ink-soft);margin:36px 0 0;max-width:440px;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) 1.4s forwards}
+.cover-meta{position:absolute;bottom:60px;left:0;display:flex;gap:32px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:rise .9s var(--ease) 1.6s forwards}
+.cover-meta b{font-weight:500;color:var(--ink);display:block;font-size:12px;letter-spacing:.18em;text-transform:none;margin-top:6px;font-family:'Noto Serif TC',serif}
+.cover-scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:fadein 1.2s var(--ease) 2s forwards}
+.cover-scroll::after{content:"";display:block;width:1px;height:36px;background:var(--ink-mute);margin:14px auto 0;animation:scrollpulse 2.4s var(--ease) infinite}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+@keyframes charRise{to{opacity:1;transform:translateY(0) rotate(0)}}
+@keyframes fadein{to{opacity:.7}}
+@keyframes scrollpulse{0%,100%{transform:scaleY(1);opacity:.4}50%{transform:scaleY(1.3);opacity:1}}
+
+.cover-art{position:relative;height:80vh;display:flex;align-items:center;justify-content:center;perspective:1200px}
+.cover-art .layer{position:absolute;border-radius:2px;box-shadow:0 30px 80px rgba(28,26,24,.18);overflow:hidden;will-change:transform}
+.cover-art .layer img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-art .l1{width:62%;height:80%;top:8%;left:8%;z-index:2;transform:rotate(-3deg)}
+.cover-art .l2{width:48%;height:62%;bottom:4%;right:2%;z-index:1;transform:rotate(4deg);opacity:.95}
+.cover-art .l3{width:32%;height:38%;top:18%;right:18%;z-index:3;transform:rotate(-1deg)}
+
+/* === responsive === */
+@media (max-width:1100px){
+  .splash{grid-template-columns:repeat(2,1fr);gap:24px;padding:80px 32px 200px}
+  .splash .col:nth-child(3){grid-column:span 2}
+  .splash-poster{width:120px;bottom:40px;right:32px}
+  .splash-enter{right:32px;width:120px;bottom:60px}
+  .splash-hint{left:32px;right:32px}
+  .splash-mark{left:32px}
+}
+@media (max-width:700px){
+  /* mobile: 1 column, scrollable; show 4 cols (hide col 5 only) */
+  .splash{
+    grid-template-columns:1fr;
+    gap:36px;
+    padding:100px 24px 280px;
+    overflow-y:auto;
+    align-content:start;
+    -webkit-overflow-scrolling:touch;
+  }
+  .splash .col{font-size:15px;line-height:2.0;min-height:auto}
+  /* hide only col 5 on mobile */
+  .splash .col:nth-child(5){display:none}
+  /* scroll hint on first load */
+  .splash::after{
+    content:'↓ scroll';
+    position:absolute;bottom:120px;left:50%;transform:translateX(-50%);
+    font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;
+    color:var(--mute,#7ba89c);opacity:.5;pointer-events:none;
+  }
 }
 </style>
 </head>
 <body data-active="zh">
 
-<nav class="nav" id="nav">
-  <a href="index.html" class="brand">
-    <span class="b-zh">骨子</span>
-    <span class="b-en">Knives</span>
-  </a>
-  <div class="nav-menu">
-    <a href="index.html">Home</a>
+<!-- vvd-brand removed: nav moved into .home-meta on the photo bottom -->
+
+
+
+<!-- =================== LAYER 1: SPLASH =================== -->
+<div class="fade-tint" id="fadeTint"></div>
+<div class="splash" id="splash">
+  <div class="splash-hint">
+    <span data-lang="zh">Solène Su Cheng · @anti.detox</span>
+    <span data-lang="en">Solène Su Cheng · @anti.detox</span>
+  </div>
+
+  <div class="col" id="col1"></div>
+  <div class="col" id="col2"></div>
+  <div class="col" id="col3"></div>
+  <div class="col" id="col4"></div>
+  <div class="col" id="col5"></div>
+
+  <div class="splash-poster"></div>
+  <div class="splash-enter" data-lang="zh">— 點擊進入 —</div>
+  <div class="splash-mark">骨子 · KNIVES</div>
+</div>
+
+<!-- =================== LAYER 2: HOME =================== -->
+<div class="home" id="home">
+
+<style>
+/* === HOME: 滿版雙照片 + 中間細分隔 + 下方 metadata === */
+.home-vvd{
+  padding:0;
+  min-height:100vh;
+  position:relative;
+  background:#ffffff !important;
+  overflow:hidden;
+}
+/* 雙照片：左右各 50% 寬，高約 55vh，無白邊 */
+.home-spread{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  height:55vh;
+  min-height:380px;
+  position:relative;
+  border-bottom:none;     /* 無下框線 */
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  outline:none;
+}
+/* 中間分隔線暫時關閉，避免被誤認為框
+.home-spread::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:rgba(28,26,24,.08);
+  pointer-events:none;
+}
+*/
+.home-photo{
+  position:relative;
+  overflow:hidden;
+  background:#ffffff !important;
+  border:none !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+.home-photo.left{grid-column:1}
+.home-photo.right{grid-column:2}
+.home-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(.92) contrast(1.02);
+  opacity:0;
+  /* 更慢更溫柔的淡入（1.4s） */
+  transition:opacity 1.4s var(--ease) .15s, transform 2.4s var(--ease),filter 1.6s var(--ease);
+}
+.home.in .home-photo img{
+  opacity:1;
+  /* 配合淡入，照片 scale 微微從 1.04 → 1.0（呼吸感） */
+  transform:scale(1);
+}
+.home-photo img{
+  transform:scale(1.04);  /* 初始稍大 */
+}
+.home-photo:hover img{transform:scale(1.03);filter:saturate(1) contrast(1.05)}
+
+/* metadata 行：緊貼照片下方，左上 + 一行，藍綠黑體 */
+.home-meta{
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:14px 22px;
+  padding:22px 40px 28px;
+  font-family:'Noto Sans TC','Inter',sans-serif;
+  font-weight:300;
+  font-size:13px;
+  letter-spacing:.04em;
+  color:#7ba89c;
+  background:#ffffff;
+  opacity:0;
+  transition:opacity 1s var(--ease) .5s;  /* 慢一點、晚一點 */
+}
+.home.in .home-meta{
+  opacity:1;
+  transition:opacity 1s var(--ease) .5s;  /* 比照片晚 0.5s 開始 */
+}
+.home-meta .name{font-weight:400;color:#7ba89c;letter-spacing:.06em;font-size:14px}
+.home-meta a{
+  color:#7ba89c;
+  text-decoration:none;
+  transition:color .3s;
+  font-weight:300;
+}
+.home-meta a:hover{color:#1c1a18}
+.home-meta a.active{color:#1c1a18;font-weight:400}
+.home-meta .sep{color:#7ba89c;opacity:.5;font-weight:200}
+
+/* fix home scrollable if content taller than vh */
+.home{overflow-y:auto;height:100vh;height:100dvh;scroll-behavior:smooth}
+
+@media (max-width:900px){
+  .home-spread{height:45vh;min-height:280px;grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+  .home-spread::after{
+    left:0;right:0;top:50%;bottom:auto;width:100%;height:1px;
+  }
+  .home-photo.left{grid-column:1;grid-row:1}
+  .home-photo.right{grid-column:1;grid-row:2}
+  .home-meta{padding:18px 20px 24px;font-size:12px;gap:8px 14px}
+}
+</style>
+
+<div class="home-vvd">
+  <div class="home-spread">
+    <div class="home-photo left">
+      <img src="img_tears/knives_01.jpg" alt="KNIVES 01">
+    </div>
+    <div class="home-photo right">
+      <img src="img_tears/knives_02.jpg" alt="KNIVES 02">
+    </div>
+  </div>
+  <nav class="home-meta">
+    <span class="name">Solène Su Cheng</span>
+    <span class="sep">—</span>
+    <a href="index.html" class="active">Home</a>
+    <span class="sep">—</span>
     <a href="work.html">Work</a>
+    <span class="sep">—</span>
     <a href="info.html">Information</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="lang-toggle">
-    <button class="active" data-set-lang="zh">中</button>
-    <span style="opacity:.3">/</span>
-    <button data-set-lang="en">EN</button>
-  </div>
-</nav>
+    <span class="sep">—</span>
+    <a href="contact.html">Portfolio</a>
+    <span class="sep">—</span>
+    <a href="contact.html">Shop</a>
+  </nav>
+</div>
 
-<header class="cover" id="top">
-  <div class="cover-strip" aria-hidden="true">
-    <img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt="">
-    <img src="img_web/f8ba6a7b__e587a4ca-37a7-4f69-9adf-213be4845548.jpg" alt="">
-    <img src="img_web/94775f56__476f09b2-7f9c-457c-9a10-bdaf1c80576e.jpg" alt="">
-    <img src="img_web/71c6723a__c035406c-e085-4d7b-9cf5-20fa96134923.jpg" alt="">
-    <img src="img_web/451af8f9__9b1afd48-9702-40c7-b52b-35e436ce232a.jpg" alt="">
-    <img src="img_web/2af56f8d__ccb66f37-b5d4-4cb1-87c1-edc692a4a61d.jpg" alt="">
-    <img src="img_web/1abf418a__21c6aaec-833b-45a3-bfe5-c2a4d2fc9604.jpg" alt="">
-    <img src="img_web/040610a8__37f1bdcc-9c0e-4c7b-8d9d-5a6aec3d89e1.jpg" alt="">
-  </div>
-  <div class="cover-inner">
-    <div class="cover-art" id="coverArt">
-      <img src="img_web/71c6723a__c035406c-e085-4d7b-9cf5-20fa96134923.jpg" alt="">
-    </div>
-    <div class="cover-rule" aria-hidden="true"></div>
-    <div class="cover-text">
-      <div>
-        <div class="cover-eyebrow">
-          <span data-lang="zh">Portfolio · 作品集 · 2018 —</span>
-          <span data-lang="en">Portfolio · 2018 —</span>
-        </div>
-        <h1 class="cover-title">
-          <span class="zh" data-lang="zh"><span class="char">S</span><span class="char">o</span><span class="char">l</span><span class="char">è</span><span class="char">n</span><span class="char">e</span></span>
-          <span class="zh" data-lang="en"><span class="char">S</span><span class="char">o</span><span class="char">l</span><span class="char">è</span><span class="char">n</span><span class="char">e</span></span>
-          <span class="en" data-lang="zh">Su Cheng · 程昭漫</span>
-          <span class="en" data-lang="en">Su Cheng · 程昭漫</span>
-        </h1>
-        <p class="cover-sub lang-block">
-          <span data-lang="zh">攝影 × 文字 · 陶瓷 · 影像裝置。澳門，1998 —</span>
-          <span data-lang="en">Photography × Words · Ceramics · Installation. Macau, 1998 —</span>
-        </p>
-      </div>
-      <div class="cover-meta">
-        <span>
-          <span data-lang="zh">最新展覽</span>
-          <span data-lang="en">Latest Exhibition</span>
-          <b data-lang="zh">骨子 Knives</b>
-          <b data-lang="en">Knives</b>
-        </span>
-        <span>
-          <span data-lang="zh">地點</span>
-          <span data-lang="en">Venue</span>
-          <b>butter room · 澳門 Macau</b>
-        </span>
-        <span>
-          <span data-lang="zh">展期</span>
-          <span data-lang="en">Dates</span>
-          <b>2025.06.19 — 07.13</b>
-        </span>
-      </div>
-      <a class="cover-mini" href="work.html">
-        <img src="img_web/040610a8__37f1bdcc-9c0e-4c7b-8d9d-5a6aec3d89e1.jpg" alt="">
-        <span class="lang-block">
-          <span data-lang="zh">查看作品索引</span>
-          <span data-lang="en">View work index</span>
-        </span>
-      </a>
-    </div>
-  </div>
-  <div class="cover-scroll">SCROLL</div>
-</header>
 
-<section class="preview">
-  <div class="eyebrow lang-block" style="margin-bottom:48px">
-    <span data-lang="zh">探索</span>
-    <span data-lang="en">Explore</span>
-  </div>
-  <div class="preview-grid">
-    <a class="preview-card" href="work.html">
-      <span class="tag">01 / Work</span>
-      <span class="arrow">→</span>
-      <img src="img_web/040610a8__37f1bdcc-9c0e-4c7b-8d9d-5a6aec3d89e1.jpg" alt="">
-      <div class="label">
-        <h3 class="t lang-block">
-          <span data-lang="zh">作品</span>
-          <span data-lang="en">Work</span>
-        </h3>
-        <p class="s lang-block">
-          <span data-lang="zh">KNIVES · Tears Collection · 摺頁文字牆 · 早期裝置</span>
-          <span data-lang="en">KNIVES · Tears · Folded pages · Earlier works</span>
-        </p>
-      </div>
-    </a>
-    <a class="preview-card" href="info.html">
-      <span class="tag">02 / Information</span>
-      <span class="arrow">→</span>
-      <img src="img_web/2af56f8d__ccb66f37-b5d4-4cb1-87c1-edc692a4a61d.jpg" alt="">
-      <div class="label">
-        <h3 class="t lang-block">
-          <span data-lang="zh">資訊</span>
-          <span data-lang="en">Information</span>
-        </h3>
-        <p class="s lang-block">
-          <span data-lang="zh">Artist bio · 展歷 · 學歷 · 推薦引言</span>
-          <span data-lang="en">Bio · Exhibitions · Education · Press</span>
-        </p>
-      </div>
-    </a>
-    <a class="preview-card" href="contact.html">
-      <span class="tag">03 / Contact</span>
-      <span class="arrow">→</span>
-      <img src="img_web/451af8f9__9b1afd48-9702-40c7-b52b-35e436ce232a.jpg" alt="">
-      <div class="label">
-        <h3 class="t lang-block">
-          <span data-lang="zh">聯絡</span>
-          <span data-lang="en">Contact</span>
-        </h3>
-        <p class="s lang-block">
-          <span data-lang="zh">展覽合作 · 駐場申請 · 影像委託</span>
-          <span data-lang="en">Collaborations · Residencies · Commissions</span>
-        </p>
-      </div>
-    </a>
-  </div>
 
-  <div class="footer-meta">
-    <span>© 2025 Solène Su Cheng · 程昭漫</span>
-    <span>Built in Macao · 澳門</span>
-  </div>
-</section>
+</div><!-- /home -->
 
 <script src="site.js"></script>
+<script>
+/* === SPLASH data + typewriter (two phases) === */
+(function(){
+  const ROUND1 = {
+    1: `早上客廳傳來吵罵聲
+有一個瞬間覺得自己回到小時候被罰
+小時的束手無策在睡眼惺忪中循環：害怕 仇恨 撫慰
+可明明已經長大到擁有擊倒敵人的能力
+
+大概也是生命中這樣不能坦露的時刻
+埋在骨裡成為引子
+造成人與人之間的吸引
+導致你抱我 我抱你的時候
+像抱著碎掉的自己一樣
+
+導致 我們之間的模糊`,
+    2: `五月份的回憶會在每年這個時候再次衝擊
+這是身體內你的記憶
+
+歡欣過後 閃亮的指甲會特別諷刺
+你問我為什麼要走 怕我愛你
+
+9564
+
+所有質地在晚上堆疊
+失竊 暈眩 新鮮感
+清醒的時候都會一抹而去
+剩下的模糊令人不想說清
+可是潮濕 明確的事實
+
+The beginning is always the fin`,
+    3: `我把你留下的衣服丟進洗衣機洗了兩遍
+重新噴上你的香水 可不是你的味道
+直逼30度的日子 城市下雨抑鬱
+我們有各自的潮濕`,
+    4: `當迪斯高球轉動起來時
+掌心抓住的光的鱗片
+本來就是無窮無盡的虛幻
+
+收放 收放
+像你譜寫的影像旋律般
+有時窒息 難以呼吸
+你用絮語填滿的節奏
+是不是想蓋過心的聲音`,
+    5: `原來對你的恨常常會在慣有的形式中渲發到別人的身人
+一旦事情不如預期發展
+那種倔便會散發
+
+感謝天對於我的念念不忘寫下答案
+因為我的快樂始終沒有辦法
+包裹你們的哀傷
+
+難道喜歡陰影是我們的基因嗎？`
+  };
+
+  const ROUND2 = {
+    1: `很懷念我們一開始時的狀態
+因為它很難 所以會懷念
+
+你走了以後
+我開始思考邊界的問題
+我們都有一點把界線畫得很死
+可我們又希望感受到的範圍更大
+
+你的影像便有這種感覺
+它們有些很灰矇
+在邊界之間豫猶
+毫厘之間的差異
+我開始考量`,
+    2: `一直想找尋得到拯救的出口
+從一開始如白紙一般 到
+後來使用技巧 但也是在消耗自己
+得到與失去總是平衡地出現`,
+    3: `有些人在談論自己情感撕心裂肺
+可是比起平淡的折磨
+根本不值一得
+
+那些願意把自己置身於柴米油鹽的慢性折磨的人們
+可能遠比浪漫主義的人更懂得如何體會痛楚
+並願意接受生活就是有快樂同時有痛楚
+他們知道生活在發生 而且是緩慢的`,
+    4: `浪漫主義的人 喜歡看見血流成河
+自己躺在血浴中
+又或者丟人進去
+他們喜歡遇溺的感覺
+告訴世界自己要死了
+又或者把人封閉在凝固的血色之中
+
+記憶如同泡泡
+在果凍狀的血內封閉起來`
+  };
+
+  const LINE_DELAY = 280;
+  const CHAR_DELAY = 30;
+  const ROUND_HOLD = 300;   // ms to hold round 1 before fading
+  const ROUND_FADE = 800;   // ms fade duration between rounds
+  const ROUND2_COLOR = '#e89a7a';  // peach
+
+  function clearCols(){
+    [1,2,3,4,5].forEach(i => {
+      const c = document.getElementById('col' + i);
+      if (c){ c.innerHTML = ''; c.style.color = ''; }
+    });
+  }
+
+  function setRoundColor(color){
+    [1,2,3,4,5].forEach(i => {
+      const c = document.getElementById('col' + i);
+      if (!c) return;
+      c.style.transition = 'none';
+      c.style.color = color;
+      // force browser to apply the change immediately
+      c.offsetHeight;
+      setTimeout(() => { c.style.transition = ''; }, 50);
+    });
+
+  }
+
+  function runRound(POEMS, isRound2, onDone){
+    // figure out which columns are visible (CSS hides some on small screens)
+    const isMobile = window.innerWidth < 700;
+    const isRound2Mobile = isMobile && POEMS === ROUND2;
+    const visibleKeys = Object.keys(POEMS).filter(k => {
+      const col = document.getElementById('col' + k);
+      if (!col) return false;
+      if (isRound2Mobile) return parseInt(k) <= 4;  // mobile round 2: 4 poems
+      if (isMobile) return parseInt(k) <= 4;        // mobile round 1: only 4 cols (col5 hidden)
+      return true;                                   // desktop: all columns
+    });
+    // first find max lines to know when typing finishes
+    let maxLines = 0;
+    visibleKeys.forEach((k) => {
+      const n = POEMS[k].split('\n').filter(l => l.length > 0).length;
+      if (n > maxLines) maxLines = n;
+    });
+    // schedule typing
+    visibleKeys.forEach((k) => {
+      const col = document.getElementById('col' + k);
+      if (!col) return;
+      const lines = POEMS[k].split('\n').filter(l => l.length > 0);
+      const lineEls = lines.map((text) => {
+        const el = document.createElement('div');
+        el.className = 'line';
+        el.textContent = text;
+        col.appendChild(el);
+        return el;
+      });
+      lineEls.forEach((el, i) => {
+        setTimeout(function(){
+          if (isRound2) typeCharsWithColor(el, '#7ba89c', ROUND2_COLOR);
+          else typeChars(el);
+        }, i * LINE_DELAY);
+      });
+    });
+    // fire onDone after typing finishes
+    const totalMs = (maxLines - 1) * LINE_DELAY + 3000;
+    setTimeout(function(){ if (onDone) onDone(); }, totalMs);
+  }
+
+  function typeChars(el){
+    const text = el.textContent;
+    el.textContent = '';
+    el.classList.add('in');
+    let i = 0;
+    const t = setInterval(() => {
+      el.textContent += text[i];
+      i++;
+      if (i >= text.length) clearInterval(t);
+    }, CHAR_DELAY);
+  }
+
+  // per-char color tween — when a new char appears in round 2,
+  // fade it in from round 1 color (teal) to round 2 color (peach)
+  function typeCharsWithColor(el, fromColor, toColor){
+    const text = el.textContent;
+    el.textContent = '';
+    el.classList.add('in');
+    let i = 0;
+    const t = setInterval(() => {
+      const ch = text[i];
+      const span = document.createElement('span');
+      span.textContent = ch;
+      // start at fromColor, then tween to toColor
+      span.style.color = fromColor;
+      span.style.transition = `color 500ms ease`;
+      el.appendChild(span);
+      requestAnimationFrame(() => { span.style.color = toColor; });
+      i++;
+      if (i >= text.length) clearInterval(t);
+    }, CHAR_DELAY);
+  }
+
+  function fadeRound1Out(onDone){
+    const lines = document.querySelectorAll('#splash .line');
+    lines.forEach((el, i) => {
+      setTimeout(() => { el.style.transition = 'opacity 250ms ease'; el.style.opacity = '0'; }, i * 8);
+    });
+    const totalFadeMs = lines.length * 8 + 350;
+    setTimeout(() => {
+      clearCols();
+      if (onDone) onDone();
+    }, totalFadeMs);
+  }
+
+  function fadeRound2In(){
+    setRoundColor(ROUND2_COLOR);
+    runRound(ROUND2, true);
+  }
+
+  // main sequence
+  function start(){
+    runRound(ROUND1, false, function(){
+      setTimeout(() => {
+        fadeRound1Out(fadeRound2In);
+      }, ROUND_HOLD);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+
+  // click splash → enter home
+  const splash = document.getElementById('splash');
+  const home = document.getElementById('home');
+  function enterHome(){
+    if (splash.classList.contains('hidden')) return;
+    const fadeTint = document.getElementById('fadeTint');
+    // Step 1: 純白瞬間覆蓋（擋住 splash + 圖片逐漸浮現）
+    if (fadeTint) fadeTint.classList.add('in');
+    // Step 2: 等一幀讓純白真的渲染完
+    requestAnimationFrame(() => {
+      // Step 3: 隱藏 splash（純白之下，瞬間切換）
+      splash.classList.add('hidden');
+      // Step 4: HOME 觸發淡入（圖片 opacity 0 → 1，緩慢 1.4s）
+      home.classList.add('in');
+      // Step 5: 等 100ms 後純白淡出（給 HOME 純白背景一點時間出現）
+      setTimeout(() => {
+        if (fadeTint) fadeTint.classList.remove('in');
+      }, 100);
+    });
+  }
+  splash.addEventListener('click', enterHome);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') enterHome();
+  });
+})();
+</script>
+
+
+</body>
+</html>
 </body>
 </html>
