@@ -6,297 +6,372 @@
 <title>Work — Solène Su Cheng</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Noto+Sans+TC:wght@200;300;400;500&family=Noto+Serif+TC:wght@200;300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Noto+Sans+TC:wght@200;300;400&family=Noto+Serif+TC:wght@200;300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <style>
-/* === VVD 風格：極簡、大圖、極小文字 === */
-:root{
-  --ink:#1c1a18;
-  --mute:#8a8580;
-  --rule:#e8e5e0;
-  --bg:#ffffff;
-}
 *{box-sizing:border-box}
-body{font-family:'Inter','Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;margin:0}
+body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-/* 頂部極簡品牌列 */
-.brand-row{
-  position:fixed;top:24px;left:32px;z-index:50;
-  font-family:'Noto Serif TC',serif;font-weight:300;font-size:20px;letter-spacing:.01em;
-  color:var(--ink);
+/* ============== STAGE 1: 節點頁 ============== */
+.work-stage{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  background:#fff;
+  overflow:hidden;
 }
-.brand-row a{color:inherit;text-decoration:none}
-.brand-row .sub{font-family:'Inter',sans-serif;font-weight:300;font-size:10px;letter-spacing:.32em;color:var(--mute);margin-left:14px;text-transform:uppercase}
 
-/* 左下導航列 */
-.nav-col{
-  position:fixed;left:32px;bottom:32px;z-index:50;
-  display:flex;flex-direction:column;gap:6px;
-  font-family:'Inter',sans-serif;font-weight:300;font-size:11px;letter-spacing:.04em;
+.work-tagline{
+  position:absolute;top:80px;left:40px;max-width:300px;
+  font-family:'Noto Sans TC','Inter',sans-serif;font-weight:300;
+  font-size:13px;line-height:1.85;letter-spacing:.04em;
+  color:#1c1a18;
 }
-.nav-col a{color:var(--mute);text-decoration:none;transition:color .3s}
-.nav-col a.active, .nav-col a:hover{color:var(--ink)}
-.nav-col .sep{margin:10px 0 4px;color:var(--mute);opacity:.4;font-size:9px;letter-spacing:.32em;text-transform:uppercase}
-.nav-col .lang{display:flex;gap:6px;margin-top:14px;font-size:10px;letter-spacing:.32em}
-.nav-col .lang button{background:none;border:0;color:var(--mute);cursor:pointer;padding:0;font-family:inherit;font-size:inherit;letter-spacing:inherit}
-.nav-col .lang button.active{color:var(--ink)}
+.work-tagline .zh{font-family:'Noto Sans TC',sans-serif;color:#1c1a18;display:block;margin-bottom:6px}
+.work-tagline .en{font-family:'Inter',sans-serif;font-size:11px;line-height:1.8;color:rgba(28,26,24,.65);display:block;letter-spacing:.05em}
 
-/* WORK 頁頭 */
-.page-head{padding:120px 32px 60px;max-width:1400px;margin:0 auto 0 220px}
-.page-head .num{font-family:'Inter',sans-serif;font-weight:300;font-size:10px;letter-spacing:.4em;color:var(--mute);display:block;margin-bottom:18px;text-transform:uppercase}
-.page-head h1{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(56px,8vw,120px);line-height:1;margin:0;letter-spacing:.02em}
+.work-credit{
+  position:absolute;bottom:80px;left:40px;
+  font-family:'Inter',sans-serif;font-weight:300;font-size:10px;
+  letter-spacing:.18em;color:rgba(28,26,24,.55);line-height:2;text-transform:uppercase;
+}
+.work-credit b{font-weight:400;color:#1c1a18;display:block;font-size:11px;letter-spacing:.12em;margin-bottom:2px}
 
-/* WORK 列表 — VVD 風格：簡潔編號 + 標題 + 年份 */
-.works-list{padding:0 32px 200px;max-width:1400px;margin:0 auto 0 220px}
-.work-item{
+.work-credit-r{
+  position:absolute;bottom:80px;right:40px;
+  font-family:'Inter',sans-serif;font-weight:300;font-size:10px;
+  letter-spacing:.18em;color:rgba(28,26,24,.55);line-height:2;text-align:right;text-transform:uppercase;
+}
+.work-credit-r b{font-weight:400;color:#1c1a18;display:block;font-size:11px;letter-spacing:.12em;margin-bottom:2px}
+
+/* 5 個散落節點 */
+.work-nodes{position:absolute;inset:0;pointer-events:none}
+.node{
+  position:absolute;
+  font-family:'Inter','Noto Sans TC',sans-serif;
+  font-weight:300;font-size:13px;letter-spacing:.04em;
+  color:#1c1a18;cursor:pointer;pointer-events:auto;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity 1.4s var(--ease),color .35s var(--ease),font-size .35s var(--ease),transform .35s var(--ease),translate 1.4s var(--ease);
+  line-height:1;text-decoration:none;white-space:nowrap;user-select:none;
+}
+.node.in{opacity:1;transform:translateY(0)}
+.node .zh{display:block;font-family:'Noto Sans TC',sans-serif;font-weight:200;font-size:11px;margin-top:3px;color:rgba(28,26,24,.55);letter-spacing:.05em;transition:color .35s}
+.node .meta{display:block;font-family:'Inter',sans-serif;font-weight:300;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(28,26,24,0);margin-top:6px;transition:color .35s var(--ease)}
+.node:hover{color:#7ba89c;transform:translate(-2px,-2px);font-size:14px}
+.node:hover .zh{color:rgba(123,168,156,.9)}
+.node:hover .meta{color:rgba(28,26,24,.5)}
+
+.node.n1{top:18%;left:8%}
+.node.n2{top:30%;left:62%}
+.node.n3{top:46%;left:24%}
+.node.n4{top:62%;left:48%}
+.node.n5{top:74%;left:14%}
+
+/* 提示：往右滑 */
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;
+  color:rgba(28,26,24,.4);text-transform:uppercase;
+  animation:slideRight 2s var(--ease) infinite alternate;
+}
+@keyframes slideRight{
+  0%{transform:translateX(calc(-50% - 6px))}
+  100%{transform:translateX(calc(-50% + 6px))}
+}
+
+/* ============== STAGE 2: Horizontal Gallery ============== */
+.gallery-stage{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:#fff;
+}
+.gallery-track{
+  display:flex;
+  height:100vh;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+.gallery-track::-webkit-scrollbar{display:none}
+
+.gallery-slide{
+  flex:0 0 100vw;
+  height:100vh;
+  scroll-snap-align:start;
   display:grid;
-  grid-template-columns:50px 1.4fr 1fr 90px;
-  gap:40px;
-  align-items:baseline;
-  padding:32px 0;
-  border-top:1px solid var(--rule);
-  cursor:pointer;
-  text-decoration:none;
-  color:inherit;
-  transition:padding .5s var(--ease);
+  grid-template-columns:1fr;
+  align-items:center;
+  justify-items:center;
+  position:relative;
+  padding:80px 60px;
+  overflow:hidden;
 }
-.work-item:last-child{border-bottom:1px solid var(--rule)}
-.work-item:hover{padding-left:12px;padding-right:12px}
-.work-item .idx{font-family:'Inter',sans-serif;font-weight:300;font-size:10px;letter-spacing:.32em;color:var(--mute)}
-.work-item .tit{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(28px,3.6vw,52px);line-height:1.1;letter-spacing:.02em;margin:0}
-.work-item .tit .en{font-family:'Inter',sans-serif;font-weight:200;font-style:normal;display:block;font-size:.45em;letter-spacing:.06em;color:var(--mute);margin-top:6px}
-.work-item .meta{font-family:'Inter',sans-serif;font-weight:300;font-size:12px;color:var(--mute);line-height:1.8;letter-spacing:.04em}
-.work-item .meta .zh{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:13px;color:var(--ink);display:block;margin-bottom:6px}
-.work-item .yr{font-family:'Inter',sans-serif;font-weight:200;font-size:42px;color:var(--mute);text-align:right;line-height:1;letter-spacing:-.02em}
-.work-item .yr .lab{display:block;font-size:9px;letter-spacing:.32em;color:var(--mute);margin-top:8px;font-weight:300;text-transform:uppercase}
 
-.page-nav{padding:40px 32px;max-width:1400px;margin:0 auto 0 220px;display:flex;justify-content:space-between;border-top:1px solid var(--rule);margin-top:40px}
-.page-nav a{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--mute);transition:color .3s;text-decoration:none}
-.page-nav a:hover{color:var(--ink)}
+/* === Tears 8 張水平滾動 === */
+.tears-rail{
+  display:flex;
+  height:65vh;
+  max-height:560px;
+  width:100vw;
+  padding:0 10vw;
+  gap:40px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.tears-rail::-webkit-scrollbar{display:none}
+.tears-frame{
+  flex:0 0 auto;
+  height:100%;
+  scroll-snap-align:center;
+  overflow:hidden;
+  background:#f3efe8;
+}
+.tears-frame img{
+  height:100%;
+  width:auto;
+  display:block;
+  object-fit:cover;
+  filter:saturate(.92) contrast(1.02);
+  transition:transform 1.6s var(--ease),filter 1.2s var(--ease);
+}
+.tears-frame:hover img{transform:scale(1.03);filter:saturate(1) contrast(1.05)}
 
-.footer-meta{padding:0 32px 40px;max-width:1400px;margin:0 auto 0 220px;display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mute)}
+/* 每張照片：置中、portrait */
+.slide-photo{
+  width:32vw;
+  max-width:480px;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  background:#f3efe8;
+}
+.slide-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.92) contrast(1.02);
+  transition:transform 1.8s var(--ease),filter 1.4s var(--ease);
+}
+.slide-photo:hover img{transform:scale(1.04);filter:saturate(1) contrast(1.05)}
 
-/* ============ PROJECT GALLERY 頁 ============ */
-.gallery{padding:120px 32px 120px 220px}
-.gallery-head{margin-bottom:60px;max-width:1200px}
-.gallery-head .num{font-family:'Inter',sans-serif;font-weight:300;font-size:10px;letter-spacing:.4em;color:var(--mute);text-transform:uppercase;margin-bottom:18px;display:block}
-.gallery-head h1{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(48px,6vw,96px);line-height:1;margin:0 0 20px;letter-spacing:.02em}
-.gallery-head .desc{font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:var(--mute);max-width:640px;line-height:1.85;letter-spacing:.04em}
-.gallery-head .desc .zh{font-family:'Noto Sans TC',sans-serif;color:var(--ink);font-weight:300;display:block;margin-bottom:8px}
+.slide-label{
+  position:absolute;bottom:80px;right:80px;text-align:right;
+  font-family:'Inter','Noto Sans TC',sans-serif;font-weight:300;
+  letter-spacing:.04em;line-height:1.85;color:#1c1a18;
+}
+.slide-label .zh{
+  font-family:'Noto Sans TC',sans-serif;font-weight:200;
+  font-size:18px;letter-spacing:.06em;display:block;margin-bottom:2px;
+}
+.slide-label .en{
+  font-family:'Inter',sans-serif;font-weight:300;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(28,26,24,.65);display:block;
+}
 
-.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;max-width:1600px}
-.gallery-grid .g{background:var(--bg-soft,#f3efe8);overflow:hidden}
-.gallery-grid .g img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.6s var(--ease),filter 1.2s var(--ease);filter:saturate(.92) contrast(1)}
-.gallery-grid .g:hover img{transform:scale(1.02);filter:saturate(1) contrast(1.02)}
+/* 編號 + 上一個 / 下一個 */
+.slide-num{
+  position:absolute;bottom:80px;left:80px;
+  font-family:'Inter',sans-serif;font-weight:300;
+  font-size:10px;letter-spacing:.4em;color:rgba(28,26,24,.4);
+  text-transform:uppercase;
+}
+.slide-back{
+  position:absolute;top:80px;left:80px;
+  font-family:'Inter',sans-serif;font-weight:300;
+  font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+  color:#7ba89c;text-decoration:none;transition:color .3s;
+}
+.slide-back:hover{color:#1c1a18}
 
-/* VVD 風：照片以 4:3 與 3:4 交錯大尺寸排列 */
-.g-wide{grid-column:span 12}
-.g-7{grid-column:span 7}
-.g-5{grid-column:span 5}
-.g-6{grid-column:span 6}
-.g-4{grid-column:span 4}
-.g-8{grid-column:span 8}
-
-.aspect-43{aspect-ratio:4/3}
-.aspect-34{aspect-ratio:3/4}
-.aspect-219{aspect-ratio:21/9}
-.aspect-11{aspect-ratio:1/1}
-.aspect-169{aspect-ratio:16/9}
-
-@media (max-width:1100px){
-  .page-head,.works-list,.page-nav,.footer-meta{margin-left:0;padding-left:24px;padding-right:24px}
-  .gallery{padding:120px 24px 80px}
-  .brand-row{left:24px}
-  .nav-col{left:24px;bottom:24px}
-  .work-item{grid-template-columns:30px 1fr;gap:14px;padding:24px 0}
-  .work-item .yr{grid-column:2;text-align:left}
-  .work-item .meta{grid-column:1 / -1;padding-top:6px}
-  .gallery-grid{grid-template-columns:1fr;gap:14px}
-  .g-wide,.g-7,.g-5,.g-6,.g-4,.g-8{grid-column:span 1}
+@media (max-width:900px){
+  .work-tagline{top:64px;left:20px;right:20px;max-width:none;font-size:12px}
+  .work-credit,.work-credit-r{bottom:24px;font-size:9px}
+  .work-credit{left:20px}
+  .work-credit-r{right:20px}
+  .node{font-size:12px}
+  .node .zh{font-size:10px}
+  .node.n1{top:22%;left:6%}
+  .node.n2{top:36%;left:54%}
+  .node.n3{top:50%;left:8%}
+  .node.n4{top:64%;left:48%}
+  .node.n5{top:78%;left:14%}
+  .slide-photo{width:70vw}
+  .slide-label{right:24px;bottom:24px}
+  .slide-label .zh{font-size:15px}
+  .slide-num,.slide-back{left:24px}
+  .slide-num{bottom:24px}
+  .slide-back{top:24px}
+  .tears-rail{padding:0 5vw;gap:20px;height:55vh}
 }
 </style>
 </head>
-<body data-active="zh">
+<body>
 
-<!-- 頂部品牌 -->
-<div class="brand-row">
-  <a href="index.html">Solène Su Cheng<span class="sub">骨子 Knives · 2025</span></a>
-</div>
-
-<!-- 左下導航 -->
-<nav class="nav-col">
+<nav class="nav site-nav" id="nav">
+  <a class="name" href="index.html">Solène Su Cheng</a>
+  <span class="sep">—</span>
   <a href="index.html">Home</a>
-  <a href="work.html" class="active">Work</a>
-  <a href="info.html">Information</a>
-  <a href="contact.html">Contact</a>
-  <span class="sep">— — —</span>
-  <div class="lang">
-    <button class="active" data-set-lang="zh">中</button>
-    <span style="opacity:.3">/</span>
-    <button data-set-lang="en">EN</button>
-  </div>
+  <span class="sep">—</span>
+  <a class="active" href="work.html">Work</a>
+  <span class="sep">—</span>
+  <a href="info.html">Info</a>
+  <span class="sep">—</span>
+  <a href="contact.html">Shop</a>
 </nav>
 
-<header class="page-head">
-  <span class="num">02 / Work</span>
-  <h1>作品</h1>
-</header>
+<!-- STAGE 1: 節點頁 -->
+<section class="work-stage" id="stage-nodes">
+  <div class="work-nodes">
+    <a class="node n1" data-target="g-knives">
+      Knives
+      <span class="zh">骨子 · 2023—2025</span>
+      <span class="meta">Photography · Words · Solo Show</span>
+    </a>
+    <a class="node n2" data-target="g-tears">
+      Tears
+      <span class="zh">淚 · 2022</span>
+      <span class="meta">Lyrical Photography · Image Poem</span>
+    </a>
+    <a class="node n3" data-target="g-insta">
+      Insta &amp; Polarid
+      <span class="zh">Instagram · Polarid · 2020—</span>
+      <span class="meta">Daily Archive · Self-publishing</span>
+    </a>
+    <a class="node n4" data-target="g-sea">
+      Sea Sea Sea –1
+      <span class="zh">Sea Sea Sea · 2023</span>
+      <span class="meta">Photography · Macau Coast</span>
+    </a>
+    <a class="node n5" href="https://instagram.com/anti.detox" target="_blank" rel="noopener">
+      Anti Detox
+      <span class="zh">@anti.detox · 2018—</span>
+      <span class="meta">Private Writing · Ongoing · IG ↗</span>
+    </a>
+  </div>
+</section>
 
-<section class="works-list">
+<!-- STAGE 2: Horizontal Gallery -->
+<section class="gallery-stage" id="stage-gallery">
+  <div class="gallery-track" id="galleryTrack">
 
-  <a class="work-item" href="#knives">
-    <span class="idx">01</span>
-    <h2 class="tit">骨子<span class="en">Knives</span></h2>
-    <div class="meta">
-      <span class="zh">攝影 × 文字</span>
-      攝影集 / 個展
+    <!-- 1. KNIVES -->
+    <div class="gallery-slide" id="g-knives">
+      <div class="slide-photo"><img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt=""></div>
+      <div class="slide-label">
+        <span class="zh">骨子</span>
+        <span class="en">Knives · 2025</span>
+      </div>
+      <div class="slide-num">01 / 05</div>
+      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
     </div>
-    <div class="yr">2025<span class="lab">Solo Show</span></div>
-  </a>
 
-  <a class="work-item" href="#tears">
-    <span class="idx">02</span>
-    <h2 class="tit">Tears Collection<span class="en">淚</span></h2>
-    <div class="meta">
-      <span class="zh">抒情攝影</span>
-      2022 · 影像詩
+    <!-- 2. TEARS — 內含 8 張水平滾動照片 -->
+    <div class="gallery-slide" id="g-tears">
+      <div class="tears-rail" id="tearsRail">
+        <div class="tears-frame"><img src="img_tears/tear_00.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_01.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_02.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_03.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_04.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_05.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_06.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_07.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_tears/tears_08.jpg" alt=""></div>
+      </div>
+      <div class="slide-label">
+        <span class="zh">淚</span>
+        <span class="en">Tears · 2022 · 1/8</span>
+      </div>
+      <div class="slide-num">02 / 05</div>
+      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
     </div>
-    <div class="yr">2022<span class="lab">Series</span></div>
-  </a>
 
-  <a class="work-item" href="#installation">
-    <span class="idx">03</span>
-    <h2 class="tit">摺頁文字牆<span class="en">Folded Pages Wall</span></h2>
-    <div class="meta">
-      <span class="zh">裝置</span>
-      butter room · 2025
+    <!-- 3. INSTA -->
+    <div class="gallery-slide" id="g-insta">
+      <div class="slide-photo" style="background:#ebe5db;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Noto Sans TC',sans-serif;font-weight:200;font-size:13px;letter-spacing:.16em;color:rgba(28,26,24,.4)">圖庫後補</span>
+      </div>
+      <div class="slide-label">
+        <span class="zh">Insta & Polarid</span>
+        <span class="en">Insta & Polarid · 2020—</span>
+      </div>
+      <div class="slide-num">03 / 05</div>
+      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
     </div>
-    <div class="yr">2025<span class="lab">Installation</span></div>
-  </a>
 
-  <a class="work-item" href="#antidetox">
-    <span class="idx">04</span>
-    <h2 class="tit">@anti.detox<span class="en">私寫</span></h2>
-    <div class="meta">
-      <span class="zh">私寫文字</span>
-      Instagram · 2018—
+    <!-- 4. SEA -->
+    <div class="gallery-slide" id="g-sea">
+      <div class="slide-photo" style="background:#ebe5db;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Noto Sans TC',sans-serif;font-weight:200;font-size:13px;letter-spacing:.16em;color:rgba(28,26,24,.4)">圖庫後補</span>
+      </div>
+      <div class="slide-label">
+        <span class="zh">Sea Sea Sea</span>
+        <span class="en">Sea Sea Sea –1 · 2023</span>
+      </div>
+      <div class="slide-num">04 / 05</div>
+      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
     </div>
-    <div class="yr">2018<span class="lab">Ongoing</span></div>
-  </a>
 
-  <a class="work-item" href="#tulle">
-    <span class="idx">05</span>
-    <h2 class="tit">紗簾裝置<span class="en">Tulle Installation</span></h2>
-    <div class="meta">
-      <span class="zh">互動裝置</span>
-      Archive · 2020
-    </div>
-    <div class="yr">2020<span class="lab">Archive</span></div>
-  </a>
+    <!-- 5. ANTI DETOX — IG external link -->
+    <a class="gallery-slide" id="g-antidetox" href="https://instagram.com/anti.detox" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <div class="slide-photo" style="background:#ebe5db;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Inter',sans-serif;font-weight:200;font-size:13px;letter-spacing:.16em;color:rgba(28,26,24,.4)">@anti.detox</span>
+      </div>
+      <div class="slide-label">
+        <span class="zh">Anti Detox</span>
+        <span class="en">@anti.detox ↗ Instagram</span>
+      </div>
+      <div class="slide-num">05 / 05</div>
+      <span class="slide-back" style="cursor:pointer">Click → Open Instagram</span>
+    </a>
 
-  <div class="page-nav">
-    <a href="index.html">← Home</a>
-    <a href="info.html">Information →</a>
-  </div>
-
-  <div class="footer-meta">
-    <span>© 2025 Solène Su Cheng · 程昭漫</span>
-    <span>Built in Macao · 澳門</span>
   </div>
 </section>
 
-<!-- ====================== PROJECT 1: KNIVES ====================== -->
-<section class="gallery" id="knives">
-  <div class="gallery-head">
-    <span class="num">02.01 / Knives</span>
-    <h1>骨子 Knives</h1>
-    <p class="desc">
-      <span class="zh">攝影 × 文字 · 2025 個展</span>
-      The first solo exhibition of Solène Su Cheng — image and text as a single breathing organism, presented at butter room, Macao.
-    </p>
-  </div>
-  <div class="gallery-grid">
-    <div class="g g-wide"><div class="aspect-219"><img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt=""></div></div>
-    <div class="g g-7"><div class="aspect-43"><img src="img_web/94775f56__476f09b2-7f9c-457c-9a10-bdaf1c80576e.jpg" alt=""></div></div>
-    <div class="g g-5"><div class="aspect-43"><img src="img_web/451af8f9__9b1afd48-9702-40c7-b52b-35e436ce232a.jpg" alt=""></div></div>
-    <div class="g g-5"><div class="aspect-34"><img src="img_web/2af56f8d__ccb66f37-b5d4-4cb1-87c1-edc692a4a61d.jpg" alt=""></div></div>
-    <div class="g g-7"><div class="aspect-34"><img src="img_web/040610a8__37f1bdcc-9c0e-4c7b-8d9d-5a6aec3d89e1.jpg" alt=""></div></div>
-  </div>
-</section>
+<script>
+// 載入節點頁時，5 個節點 stagger 淡入
+(function(){
+  const nodes = document.querySelectorAll('.node');
+  if (!nodes.length) return;
+  function reveal(){
+    nodes.forEach((n, i) => {
+      setTimeout(() => n.classList.add('in'), i * 220);
+    });
+  }
+  // 等 100ms 確保 DOM 穩定 + nav 渲染完
+  setTimeout(reveal, 100);
+})();
 
-<!-- ====================== PROJECT 2: TEARS ====================== -->
-<section class="gallery" id="tears" style="background:#faf8f5">
-  <div class="gallery-head">
-    <span class="num">02.02 / Tears</span>
-    <h1>Tears Collection</h1>
-    <p class="desc">
-      <span class="zh">抒情攝影 · 2022 · 影像詩</span>
-      Tears as form, as texture, as body. A series of lyrical photographs made in private — the work that prefigured the 2025 KNIVES exhibition.
-    </p>
-  </div>
-  <div class="gallery-grid">
-    <div class="g g-7"><div class="aspect-43"><img src="img_tears/tears_01.jpg" alt=""></div></div>
-    <div class="g g-5"><div class="aspect-43"><img src="img_tears/tears_02.jpg" alt=""></div></div>
-    <div class="g g-5"><div class="aspect-43"><img src="img_tears/tears_03.jpg" alt=""></div></div>
-    <div class="g g-7"><div class="aspect-43"><img src="img_tears/tears_04.jpg" alt=""></div></div>
-    <div class="g g-4"><div class="aspect-34"><img src="img_tears/tears_05.jpg" alt=""></div></div>
-    <div class="g g-4"><div class="aspect-34"><img src="img_tears/tears_06.jpg" alt=""></div></div>
-    <div class="g g-4"><div class="aspect-34"><img src="img_tears/tears_07.jpg" alt=""></div></div>
-    <div class="g g-12"><div class="aspect-219"><img src="img_tears/tears_08.jpg" alt=""></div></div>
-  </div>
-</section>
+// 點節點 → 切到 gallery stage 並滑到對應 slide
+document.querySelectorAll('.node[data-target]').forEach(node => {
+  node.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = node.dataset.target;
+    const stage = document.getElementById('stage-gallery');
+    const track = document.getElementById('galleryTrack');
+    const slide = document.getElementById(targetId);
+    stage.scrollIntoView({behavior:'smooth'});
+    setTimeout(() => {
+      if (slide) track.scrollTo({left: slide.offsetLeft, behavior:'smooth'});
+    }, 600);
+  });
+});
 
-<!-- ====================== PROJECT 3: INSTALLATION ====================== -->
-<section class="gallery" id="installation">
-  <div class="gallery-head">
-    <span class="num">02.03 / Folded Pages</span>
-    <h1>摺頁文字牆</h1>
-    <p class="desc">
-      <span class="zh">裝置 · butter room · 2025</span>
-      Folded pages hung in sequence. A wall of texts becomes an installation, becomes a room you can read with your body.
-    </p>
-  </div>
-  <div class="gallery-grid">
-    <div class="g g-wide"><div class="aspect-219"><img src="img_web/040610a8__37f1bdcc-9c0e-4c7b-8d9d-5a6aec3d89e1.jpg" alt=""></div></div>
-    <div class="g g-6"><div class="aspect-43"><img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt=""></div></div>
-    <div class="g g-6"><div class="aspect-43"><img src="img_web/94775f56__476f09b2-7f9c-457c-9a10-bdaf1c80576e.jpg" alt=""></div></div>
-  </div>
-</section>
-
-<!-- ====================== PROJECT 4: @ANTI.DETOX ====================== -->
-<section class="gallery" id="antidetox" style="background:#faf8f5">
-  <div class="gallery-head">
-    <span class="num">02.04 / anti.detox</span>
-    <h1>@anti.detox</h1>
-    <p class="desc">
-      <span class="zh">私寫 · Instagram · 2018—</span>
-      Private writing since 2018. Notes on intimacy, image, the body, the edge. The archive of a sensibility before it became public work.
-    </p>
-  </div>
-  <div class="gallery-grid">
-    <div class="g g-6"><div class="aspect-34"><img src="img_web/451af8f9__9b1afd48-9702-40c7-b52b-35e436ce232a.jpg" alt=""></div></div>
-    <div class="g g-6"><div class="aspect-34"><img src="img_web/2af56f8d__ccb66f37-b5d4-4cb1-87c1-edc692a4a61d.jpg" alt=""></div></div>
-    <div class="g g-wide"><div class="aspect-219"><img src="img_web/94775f56__476f09b2-7f9c-457c-9a10-bdaf1c80576e.jpg" alt=""></div></div>
-  </div>
-</section>
-
-<!-- ====================== PROJECT 5: TULLE ====================== -->
-<section class="gallery" id="tulle">
-  <div class="gallery-head">
-    <span class="num">02.05 / Tulle</span>
-    <h1>紗簾裝置</h1>
-    <p class="desc">
-      <span class="zh">互動裝置 · 2020 · Archive</span>
-      An early interactive piece using tulle as a permeable membrane — the body of the viewer becomes part of the work.
-    </p>
-  </div>
-  <div class="gallery-grid">
-    <div class="g g-7"><div class="aspect-43"><img src="img_web/2af56f8d__ccb66f37-b5d4-4cb1-87c1-edc692a4a61d.jpg" alt=""></div></div>
-    <div class="g g-5"><div class="aspect-43"><img src="img_web/451af8f9__9b1afd48-9702-40c7-b52b-35e436ce232a.jpg" alt=""></div></div>
-    <div class="g g-wide"><div class="aspect-219"><img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt=""></div></div>
-  </div>
-</section>
-
+// Back 按鈕 — 回到節點頁
+document.querySelectorAll('[data-back]').forEach(b => {
+  b.addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('stage-nodes').scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
 <script src="site.js"></script>
 </body>
 </html>

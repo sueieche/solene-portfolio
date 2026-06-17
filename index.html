@@ -21,14 +21,14 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   gap:32px;
   padding:60px 56px;
   cursor:pointer;
-  transition:none;     /* 瞬間隱藏 */
+  opacity:1;
+  transition:opacity 1.6s var(--ease), visibility 0s linear 1.6s;
   overflow:hidden;
 }
 .splash.hidden{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-  display:none;        /* 真正從渲染樹移除，避免字殘留 */
 }
 
 /* 純白過渡層（瞬間切換） */
@@ -73,22 +73,24 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
 
 /* bottom image — transparent PNG */
 .splash-poster{
-  position:absolute;bottom:42px;right:42px;
-  width:min(34vw,420px);aspect-ratio:16/9;
+  position:absolute;bottom:38px;left:calc(80% + 4px);
+  width:min(34vw,540px);aspect-ratio:16/9;
   background:transparent;
   box-shadow:none;
   outline:none;
   border:none;
-  opacity:0;animation:fadeUp 1.4s var(--ease) 4.5s forwards;
+  opacity:1;
   pointer-events:none;
 }
 .splash-poster img{
+  position:absolute;inset:0;
   width:100%;height:100%;object-fit:contain;display:block;
   background:transparent;
+  opacity:0;
+  transition:opacity 1.4s var(--ease);
   filter:drop-shadow(0 4px 16px rgba(28,26,24,.08));
 }
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
+.splash-poster img.active{opacity:1}
 /* === HOME (layer 2) === */
 .home{
   opacity:1;            /* 永遠不透明 */
@@ -101,7 +103,7 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
 .cover-inner{position:relative;width:100%;max-width:1400px;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
 .cover-text{position:relative;z-index:2}
 .cover-eyebrow{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:32px;display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) .2s forwards}
-.cover-eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--peach)}
+.cover-eyebrow::before{display:none}
 .cover-title{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(72px,12vw,180px);line-height:.92;letter-spacing:.04em;margin:0;color:var(--ink);position:relative}
 .cover-title .char{display:inline-block;opacity:0;transform:translateY(60px) rotate(2deg);animation:charRise 1.2s var(--ease) forwards}
 .cover-title .zh{display:block}
@@ -110,7 +112,7 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
 .cover-meta{position:absolute;bottom:60px;left:0;display:flex;gap:32px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:rise .9s var(--ease) 1.6s forwards}
 .cover-meta b{font-weight:500;color:var(--ink);display:block;font-size:12px;letter-spacing:.18em;text-transform:none;margin-top:6px;font-family:'Noto Serif TC',serif}
 .cover-scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);opacity:0;animation:fadein 1.2s var(--ease) 2s forwards}
-.cover-scroll::after{content:"";display:block;width:1px;height:36px;background:var(--ink-mute);margin:14px auto 0;animation:scrollpulse 2.4s var(--ease) infinite}
+.cover-scroll::after{display:none}
 @keyframes rise{to{opacity:1;transform:translateY(0)}}
 @keyframes charRise{to{opacity:1;transform:translateY(0) rotate(0)}}
 @keyframes fadein{to{opacity:.7}}
@@ -127,7 +129,7 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
 @media (max-width:1100px){
   .splash{grid-template-columns:repeat(2,1fr);gap:24px;padding:80px 32px 200px}
   .splash .col:nth-child(3){grid-column:span 2}
-  .splash-poster{width:180px;bottom:40px;right:32px}
+  .splash-poster{width:min(40vw,260px);bottom:36px;left:calc(50vw + 16px);right:auto}
   .splash-hint{left:32px;right:32px}
 }
 @media (max-width:700px){
@@ -143,6 +145,15 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   .splash .col{font-size:15px;line-height:2.0;min-height:auto}
   /* hide only col 5 on mobile */
   .splash .col:nth-child(5){display:none}
+  .splash-poster{
+    position:relative;
+    left:0;
+    right:auto;
+    bottom:auto;
+    width:min(76vw,420px);
+    margin-top:20px;
+    align-self:start;
+  }
   /* scroll hint on first load */
   .splash::after{
     content:'↓ scroll';
@@ -173,7 +184,10 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   <div class="col" id="col4"></div>
   <div class="col" id="col5"></div>
 
-  <div class="splash-poster"><img src="img_web/info.png" alt=""></div>
+  <div class="splash-poster" id="splashPoster">
+    <img class="active" data-poster="round1" src="img_splash/splash_01.png" alt="">
+    <img data-poster="round2" src="img_splash/splash_02.png" alt="">
+  </div>
 </div>
 
 <!-- =================== LAYER 2: HOME =================== -->
@@ -203,16 +217,7 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   outline:none;
 }
 /* 中間分隔線暫時關閉，避免被誤認為框
-.home-spread::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  bottom:0;
-  width:1px;
-  background:rgba(28,26,24,.08);
-  pointer-events:none;
-}
+.home-spread::after{display:none}
 */
 .home-photo{
   position:relative;
@@ -243,14 +248,20 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   transform:scale(1.04);  /* 初始稍大 */
 }
 .home-photo:hover img{transform:scale(1.03);filter:saturate(1) contrast(1.05)}
+.home-photo:hover img{transform:scale(1.03);filter:saturate(1) contrast(1.05)}
+
+.home-spread::after{display:none !important}
 
 /* metadata 行：緊貼照片下方，左上 + 一行，藍綠黑體 */
 .home-meta{
   display:flex;
   align-items:baseline;
-  flex-wrap:wrap;
+  justify-content:space-between;
+  flex-wrap:nowrap;
   gap:14px 22px;
-  padding:22px 40px 28px;
+  width:75vw;
+  margin:22px 0 28px 40px;
+  padding:0;
   font-family:'Noto Sans TC','Inter',sans-serif;
   font-weight:300;
   font-size:13px;
@@ -274,15 +285,15 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
 .home-meta a:hover{color:#1c1a18}
 .home-meta a.active{color:#1c1a18;font-weight:400}
 .home-meta .sep{color:#7ba89c;opacity:.5;font-weight:200}
+.home-vvd{transition:transform 1.05s var(--ease)}
+.home.exit-to-work .home-vvd{transform:translateY(-55vh)}
+.home.exit-to-work .home-meta{opacity:1;transition:none}
 
 /* fix home scrollable if content taller than vh */
 .home{overflow-y:auto;height:100vh;height:100dvh;scroll-behavior:smooth}
 
 @media (max-width:900px){
   .home-spread{height:45vh;min-height:280px;grid-template-columns:1fr;grid-template-rows:1fr 1fr}
-  .home-spread::after{
-    left:0;right:0;top:50%;bottom:auto;width:100%;height:1px;
-  }
   .home-photo.left{grid-column:1;grid-row:1}
   .home-photo.right{grid-column:1;grid-row:2}
   .home-meta{padding:18px 20px 24px;font-size:12px;gap:8px 14px}
@@ -303,13 +314,11 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
     <span class="sep">—</span>
     <a href="index.html" class="active">Home</a>
     <span class="sep">—</span>
-    <a href="work.html">Work</a>
+    <a href="work.html" data-home-transition>Work</a>
     <span class="sep">—</span>
-    <a href="info.html">Information</a>
+    <a href="info.html" data-home-transition>Info</a>
     <span class="sep">—</span>
-    <a href="contact.html">Portfolio</a>
-    <span class="sep">—</span>
-    <a href="contact.html">Shop</a>
+    <a href="contact.html" data-home-transition>Shop</a>
   </nav>
 </div>
 
@@ -522,7 +531,14 @@ The beginning is always the fin`,
     }, totalFadeMs);
   }
 
+  function setSplashPoster(round){
+    document.querySelectorAll('#splashPoster img').forEach(img => {
+      img.classList.toggle('active', img.dataset.poster === round);
+    });
+  }
+
   function fadeRound2In(){
+    setSplashPoster('round2');
     setRoundColor(ROUND2_COLOR);
     runRound(ROUND2, true);
   }
@@ -547,22 +563,22 @@ The beginning is always the fin`,
   const home = document.getElementById('home');
   function enterHome(){
     if (splash.classList.contains('hidden')) return;
-    const fadeTint = document.getElementById('fadeTint');
-    // Step 1: 純白瞬間覆蓋（擋住 splash + 圖片逐漸浮現）
-    if (fadeTint) fadeTint.classList.add('in');
-    // Step 2: 等一幀讓純白真的渲染完
+    home.classList.add('in');
     requestAnimationFrame(() => {
-      // Step 3: 隱藏 splash（純白之下，瞬間切換）
       splash.classList.add('hidden');
-      // Step 4: HOME 觸發淡入（圖片 opacity 0 → 1，緩慢 1.4s）
-      home.classList.add('in');
-      // Step 5: 等 100ms 後純白淡出（給 HOME 純白背景一點時間出現）
-      setTimeout(() => {
-        if (fadeTint) fadeTint.classList.remove('in');
-      }, 100);
     });
   }
   splash.addEventListener('click', enterHome);
+  document.querySelectorAll('[data-home-transition]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      home.classList.add('exit-to-work');
+      setTimeout(() => {
+        window.location.href = link.href;
+      }, 1050);
+    });
+  });
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') enterHome();
   });

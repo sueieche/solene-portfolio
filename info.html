@@ -3,337 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Solène Su Cheng</title>
+<title>Info — Solène Su Cheng</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+TC:wght@200;300;400&family=Noto+Serif+TC:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <style>
-.page-head{padding:160px 40px 60px;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:end}
-.page-head .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:var(--peach);display:block;margin-bottom:16px}
-.page-head h1{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(56px,9vw,128px);line-height:.95;margin:0;letter-spacing:.04em}
-.page-head .desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--ink-mute);max-width:520px;margin:0}
-
-.cv{padding:60px 40px 140px;max-width:1320px;margin:0 auto}
-.cv-section{margin-bottom:64px;padding-bottom:40px;border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;background:linear-gradient(to bottom,#fff 0%,#fff 58%,rgba(255,255,255,0) 100%);z-index:999;pointer-events:none}
+.site-nav{position:fixed;top:22px;left:40px;z-index:1000;background:#fff}
+.cv{padding:180px 40px 140px;max-width:1320px;margin:0 auto}
+.cv-section{margin-bottom:64px;padding-bottom:40px;border-bottom:0}
 .cv-section:last-child{border-bottom:0}
 .cv-section .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:32px}
-.cv-section .sec-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--peach);letter-spacing:.2em}
-.cv-section .sec-title{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink);font-weight:500}
-.cv-section .sec-zh{margin-left:auto;font-family:'Noto Serif TC',serif;font-size:14px;color:var(--ink-mute)}
-
-.cv-bio{font-family:'Noto Serif TC',serif;font-weight:300;font-size:18px;line-height:2.05;color:var(--ink-soft);max-width:780px;margin:0 0 28px}
-.cv-bio:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:64px;float:left;line-height:.85;padding:8px 14px 0 0;color:var(--peach)}
-
-.cv-quote{font-family:'Noto Serif TC',serif;font-weight:300;font-size:18px;line-height:1.95;color:var(--ink-soft);border-left:2px solid var(--peach);padding:8px 0 8px 28px;margin:0 0 28px;max-width:680px}
-.cv-quote em{font-family:'Cormorant Garamond',serif;color:var(--peach);font-style:italic}
-
-.cv-row{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:14px;align-items:start}
-.cv-row:last-child{border-bottom:0}
-.cv-row .y{font-family:'Inter',sans-serif;color:var(--peach);font-weight:500;letter-spacing:.08em;padding-top:2px}
+.cv-section .sec-num{font-family:'Noto Sans TC','Inter',sans-serif;font-style:normal;font-size:9px;color:var(--teal);letter-spacing:.28em}
+.cv-section .sec-title{font-family:'Noto Sans TC','Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:none;color:var(--teal);font-weight:300}
+.cv-bio{font-family:'Noto Sans TC','Inter',sans-serif;font-weight:300;font-size:13px;line-height:2.05;letter-spacing:.04em;color:var(--ink-soft);max-width:720px;margin:0 0 24px}
+.cv-quote{font-family:'Noto Sans TC','Inter',sans-serif;font-weight:300;font-size:13px;line-height:2.05;letter-spacing:.04em;color:var(--ink-soft);border-left:0;padding:0;margin:24px 0 24px;max-width:680px}
+.cv-quote em{font-family:inherit;color:var(--teal);font-style:normal}
+.cv-row{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:12px 0;border-bottom:0;font-size:13px;align-items:start}
+.cv-row .y{font-family:'Inter',sans-serif;color:var(--teal);font-weight:500;letter-spacing:.08em;padding-top:2px}
 .cv-row .d{color:var(--ink-soft);line-height:1.75}
 .cv-row .d b{color:var(--ink);font-weight:500}
 .cv-row .d .note{color:var(--ink-mute);font-size:13px;display:block;margin-top:4px}
-
-.cv-skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 40px;margin-top:8px}
-.cv-skill{padding:16px 0;border-bottom:1px solid var(--rule)}
-.cv-skill .lab{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;display:block}
-.cv-skill .val{font-family:'Noto Serif TC',serif;font-size:14px;color:var(--ink-soft);line-height:1.7}
-
-.cv-cta{margin-top:60px;display:flex;gap:18px;flex-wrap:wrap}
-.cv-cta a{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;padding:16px 28px;border:1px solid var(--ink);color:var(--ink);transition:all .3s var(--ease)}
-.cv-cta a:hover{background:var(--ink);color:var(--bg)}
-.cv-cta a.peach{border-color:var(--peach);color:var(--peach)}
-.cv-cta a.peach:hover{background:var(--peach);color:var(--ink)}
-
-.page-nav{padding:60px 40px;max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;border-top:1px solid var(--rule);margin-top:40px}
-.page-nav a{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-mute);transition:color .3s}
-.page-nav a:hover{color:var(--peach)}
-
+.cv-row a{color:var(--teal);text-decoration:none}
+.cv-row a:hover{color:var(--ink)}
 @media (max-width:960px){
-  .page-head{grid-template-columns:1fr;gap:24px;padding:120px 20px 40px}
   .cv{padding:40px 20px 80px}
-  .cv-skills{grid-template-columns:1fr}
-  .page-nav{flex-direction:column;gap:16px;padding:40px 20px}
   .cv-row{grid-template-columns:60px 1fr;gap:14px}
 }
 </style>
 </head>
 <body data-active="zh">
 
-<nav class="nav" id="nav">
-  <a href="index.html" class="brand">
-    <span class="b-zh">骨子</span>
-    <span class="b-en">Knives</span>
-  </a>
-  <div class="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="work.html">Work</a>
-    <a href="info.html">Information</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="lang-toggle">
-    <button class="active" data-set-lang="zh">中</button>
-    <span style="opacity:.3">/</span>
-    <button data-set-lang="en">EN</button>
-  </div>
+<nav class="nav site-nav" id="nav">
+  <a class="name" href="index.html">Solène Su Cheng</a>
+  <span class="sep">—</span>
+  <a href="index.html">Home</a>
+  <span class="sep">—</span>
+  <a href="work.html">Work</a>
+  <span class="sep">—</span>
+  <a href="info.html" class="active">Info</a>
+  <span class="sep">—</span>
+  <a href="contact.html">Shop</a>
 </nav>
-
-<header class="page-head">
-  <div>
-    <span class="num">03 —</span>
-    <h1 class="lang-block">
-      <span data-lang="zh">資訊</span>
-      <span data-lang="en">Portfolio</span>
-    </h1>
-  </div>
-  <p class="desc lang-block">
-    <span data-lang="zh">關於創作者、展歷、教育與引言。</span>
-    <span data-lang="en">About, exhibitions, education, and selected press.</span>
-  </p>
-</header>
 
 <main class="cv">
 
-  <!-- 01 · BIO -->
+  <!-- 01 · ARTIST -->
   <section class="cv-section">
     <div class="sec-head">
       <span class="sec-num">01</span>
-      <span class="sec-title lang-block">
-        <span data-lang="zh">關於創作者</span>
-        <span data-lang="en">About the Artist</span>
-      </span>
-      <span class="sec-zh lang-block">
-        <span data-lang="zh">Biography</span>
-        <span data-lang="en">自述</span>
-      </span>
+      <span class="sec-title">Artist</span>
     </div>
-    <p class="cv-bio lang-block" data-lang="zh">
-      Solène Su Cheng（程昭漫），澳門理工大學多媒體設計系畢業。2018 年起以帳號 <em style="font-style:normal;color:var(--peach)">@anti.detox</em> 持續發表私寫文字，並以「素」為筆名撰寫劇評刊於網上平台《評地》。2022 年曾於北京從事時尚造型工作，現回澳投身影像與文字的創作。她的實踐橫跨私密攝影（KNIVES）與抒情攝影（Tears Collection），始終把「文字」與「影像」當作兩種不能分離的媒介。
+    <p class="cv-bio">
+      Solène Su Cheng（程昭漫），澳門理工大學多媒體設計系畢業。2018 年起以帳號 <em style="font-style:normal;color:var(--teal)">@anti.detox</em> 持續發表私寫文字，並以「素」為筆名撰寫劇評刊於網上平台《評地》。2022 年曾於北京從事時尚造型工作，現回澳投身影像與文字的創作，把「文字」與「影像」當作兩種不能分離的媒介。
     </p>
-    <p class="cv-bio lang-block" data-lang="en">
-      Solène Su Cheng (程昭漫) is a Macau-based artist and writer who graduated from the Macao Polytechnic University in Multimedia Design. Since 2018, she has been publishing private texts under the handle @anti.detox, and writing theatre criticism under the pen name "素" for the online platform 評地. After a year of fashion styling work in Beijing (2022), she returned to Macau to focus on photography and writing. Her practice moves between private portraiture (KNIVES) and lyrical photography (Tears Collection). She treats image and text as two inseparable media.
+    <p class="cv-bio">
+      Solène Su Cheng (程昭漫) is a Macau-based artist and writer who graduated from the Macao Polytechnic University in Multimedia Design. Since 2018, she has been publishing private texts under the handle @anti.detox, and writing theatre criticism under the pen name "素" for the online platform 評地. After a year of fashion styling work in Beijing (2022), she returned to Macau to focus on photography and writing. She treats image and text as two inseparable media.
     </p>
-    <blockquote class="cv-quote lang-block">
-      <span data-lang="zh">「大概也是生命中這樣<em>不能坦露的時刻</em>，埋在骨裡成為引子，造成人與人之間的吸引，導致你抱我，我抱你的時候，像抱著碎掉的自己一樣。」</span>
-      <span data-lang="en">"Perhaps it is also <em>the unlivable moments of a life</em> that get buried in the bone, become the kindling for attraction — so that when you hold me, I hold you, it is like holding a broken self."</span>
-    </blockquote>
   </section>
 
-  <!-- 02 · EXHIBITIONS -->
+  <!-- 02 · EXHIBITION -->
   <section class="cv-section">
     <div class="sec-head">
       <span class="sec-num">02</span>
-      <span class="sec-title lang-block">
-        <span data-lang="zh">展歷</span>
-        <span data-lang="en">Selected Exhibitions</span>
-      </span>
-      <span class="sec-zh lang-block">
-        <span data-lang="zh">Exhibitions &amp; Awards</span>
-        <span data-lang="en">展覽與獲獎</span>
-      </span>
+      <span class="sec-title">Exhibition &amp; Award</span>
     </div>
-
     <div class="cv-row">
       <span class="y">2025</span>
-      <span class="d lang-block">
-        <b data-lang="zh">骨子 Knives — 個展</b>
-        <b data-lang="en">Knives — Solo Exhibition</b>
-        <span class="note lang-block">
-          <span data-lang="zh">butter room · 澳門 · 2025.06.19 — 07.13</span>
-          <span data-lang="en">butter room, Macau · 19 Jun — 13 Jul, 2025</span>
-        </span>
+      <span class="d">
+        <b>骨子 Knives — 個展</b>
+        <span class="note">butter room · 澳門 </span>
       </span>
     </div>
     <div class="cv-row">
       <span class="y">2022</span>
-      <span class="d lang-block">
-        <b data-lang="zh">澳門新女藝展 — 攝影入選</b>
-        <b data-lang="en">Macau New Women in Art — Photography Selected</b>
-        <span class="note lang-block">
-          <span data-lang="zh">Tears Collection 8 幅攝影作品</span>
-          <span data-lang="en">8 photographs from Tears Collection</span>
-        </span>
+      <span class="d">
+        <b>澳門新女藝展 — 攝影群展 Tears Collection 8 幅攝影作品</b>
+        <span class="note">望廈山房 · 澳門  </span>
       </span>
     </div>
     <div class="cv-row">
       <span class="y">2020</span>
-      <span class="d lang-block">
-        <b data-lang="zh">澳門城市藝穗節</b>
-        <b data-lang="en">Macau City Fringe Festival</b>
-        <span class="note lang-block">
-          <span data-lang="zh">互動裝置《Focus to》延伸作品入選第二十屆節目</span>
-          <span data-lang="en">Interactive installation Focus to (20th edition programme)</span>
-        </span>
+      <span class="d">
+        <b>互動裝置《Focus to》</b>
+        <span class="note">第二十屆節目澳門城市藝穗節 </span>
       </span>
     </div>
     <div class="cv-row">
       <span class="y">2020</span>
-      <span class="d lang-block">
-        <b data-lang="zh">《FEEEL MACAU》動態海報展</b>
-        <b data-lang="en">FEEEL MACAU — Motion Poster Exhibition</b>
-      </span>
+      <span class="d"><b>《FEEEL MACAU》動態海報展</b></span>
     </div>
-    <div class="cv-row">
-      <span class="y">2019</span>
-      <span class="d lang-block">
-        <b data-lang="zh">《做棺》紀錄片</b>
-        <b data-lang="en">Making the Coffin (Documentary)</b>
-        <span class="note lang-block">
-          <span data-lang="zh">副導演、製片、文案及字體設計 · 入選澳門戀愛電影館《未來之路：海峽兩岸暨港澳地區大專學生電影作品交流展》</span>
-          <span data-lang="en">Co-director, producer, copy &amp; type design · screened at Cinemateca Paixão, Macau</span>
-        </span>
-      </span>
-    </div>
+
     <div class="cv-row">
       <span class="y">2018</span>
-      <span class="d lang-block">
-        <b data-lang="zh">立體書《playground》— Young Ones Award Merit</b>
-        <b data-lang="en">playground (Pop-up Book) — Young Ones Award, Merit</b>
-      </span>
+      <span class="d"><b>立體書《playground》— Young Ones Award Merit</b></span>
     </div>
   </section>
 
-  <!-- 03 · EDUCATION -->
+  <!-- 03 · CONTACT -->
   <section class="cv-section">
     <div class="sec-head">
       <span class="sec-num">03</span>
-      <span class="sec-title lang-block">
-        <span data-lang="zh">教育</span>
-        <span data-lang="en">Education</span>
-      </span>
-      <span class="sec-zh lang-block">
-        <span data-lang="zh">Education</span>
-        <span data-lang="en">學歷</span>
-      </span>
+      <span class="sec-title">Contact</span>
     </div>
     <div class="cv-row">
-      <span class="y">2016–20</span>
-      <span class="d lang-block">
-        <b data-lang="zh">澳門理工學院（現澳門理工大學）設計學士 — 多媒體設計</b>
-        <b data-lang="en">B.A. Design (Multimedia), Macao Polytechnic University</b>
-        <span class="note lang-block">
-          <span data-lang="zh">Macao Polytechnic Institute (now Macao Polytechnic University)</span>
-          <span data-lang="en">B.A. Design, Multimedia Design major</span>
-        </span>
-      </span>
+      <span class="y">Instagram</span>
+      <span class="d"><a href="https://instagram.com/anti.detox" target="_blank" rel="noopener">@anti.detox</a></span>
     </div>
   </section>
-
-  <!-- 04 · PRESS -->
-  <section class="cv-section">
-    <div class="sec-head">
-      <span class="sec-num">04</span>
-      <span class="sec-title lang-block">
-        <span data-lang="zh">推薦引言</span>
-        <span data-lang="en">Selected Press</span>
-      </span>
-      <span class="sec-zh lang-block">
-        <span data-lang="zh">Press / Essays</span>
-        <span data-lang="en">推薦引言</span>
-      </span>
-    </div>
-    <div class="cv-row">
-      <span class="y">2025</span>
-      <span class="d lang-block">
-        <b>l'eco</b> · <span data-lang="zh">創作者</span><span data-lang="en">Artist</span>
-        <span class="note lang-block">
-          <span data-lang="zh">「看她的文字，讀她的影像，過程如經歷一場『春潮』，驟變的潮汐牽連著相遇又錯過的關係……她深刻地訴說痛，才是現實的寫照。」</span>
-          <span data-lang="en">"Reading her words and her images feels like walking through a spring tide — sudden currents that pull together the relationships that met and missed each other… she insists that pain, not romance, is the real subject."</span>
-        </span>
-      </span>
-    </div>
-    <div class="cv-row">
-      <span class="y">2025</span>
-      <span class="d lang-block">
-        <b>張頴嵐 Kathine</b> · <span data-lang="zh">獨立策展人 / 藝術跨領域研究</span><span data-lang="en">Independent Curator</span>
-        <span class="note lang-block">
-          <span data-lang="zh">「愛是雙刃劍……S 的骨子裡才是最接近『愛』的一個，沒有高呼愛自己的口號，也總是學不會（愛），但至少，S 不會是愛無能的。」</span>
-          <span data-lang="en">"Love is a double-edged sword… in the bones, S is the one closest to love itself — never chanting the slogan of self-love, never quite learning how, but at least not incapable of love."</span>
-        </span>
-      </span>
-    </div>
-  </section>
-
-  <!-- 05 · PRACTICE -->
-  <section class="cv-section">
-    <div class="sec-head">
-      <span class="sec-num">05</span>
-      <span class="sec-title lang-block">
-        <span data-lang="zh">創作媒介</span>
-        <span data-lang="en">Practice</span>
-      </span>
-      <span class="sec-zh lang-block">
-        <span data-lang="zh">Practice</span>
-        <span data-lang="en">創作媒介</span>
-      </span>
-    </div>
-    <div class="cv-skills">
-      <div class="cv-skill">
-        <span class="lab lang-block"><span data-lang="zh">攝影 / Photography</span><span data-lang="en" style="display:none">Photography</span></span>
-        <span class="val lang-block">
-          <span data-lang="zh">私密人像 · 抒情攝影 · 空間紀錄</span>
-          <span data-lang="en">Private portraiture · Lyrical photography · Spatial documentation</span>
-        </span>
-      </div>
-      <div class="cv-skill">
-        <span class="lab lang-block"><span data-lang="zh">文字 / Writing</span><span data-lang="en" style="display:none">Writing</span></span>
-        <span class="val lang-block">
-          <span data-lang="zh">私寫 · 詩 · 劇評</span>
-          <span data-lang="en">Private writing · Poetry · Theatre criticism</span>
-        </span>
-      </div>
-      <div class="cv-skill">
-        <span class="lab lang-block"><span data-lang="zh">影像裝置 / Installation</span><span data-lang="en" style="display:none">Installation</span></span>
-        <span class="val lang-block">
-          <span data-lang="zh">互動裝置 · 摺頁文字牆</span>
-          <span data-lang="en">Interactive installation · Folded-pages wall</span>
-        </span>
-      </div>
-      <div class="cv-skill">
-        <span class="lab lang-block"><span data-lang="zh">平面設計 / Design</span><span data-lang="en" style="display:none">Design</span></span>
-        <span class="val lang-block">
-          <span data-lang="zh">視覺系統 · 海報 · 字體</span>
-          <span data-lang="en">Visual identity · Posters · Type</span>
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 · CTA -->
-  <section class="cv-section">
-    <div class="sec-head">
-      <span class="sec-num">06</span>
-      <span class="sec-title lang-block">
-        <span data-lang="zh">取得完整履歷</span>
-        <span data-lang="en">Get the Full CV</span>
-      </span>
-      <span class="sec-zh lang-block">
-        <span data-lang="zh">Get in touch</span>
-        <span data-lang="en">聯絡</span>
-      </span>
-    </div>
-    <p class="cv-quote lang-block" style="border:0;padding:0;margin:0 0 32px">
-      <span data-lang="zh">如需完整 CV（含 2017–2025 全部工作經歷、媒體報導、設計委託），請來信。</span>
-      <span data-lang="en">For a full CV (2017–2025 work history, press, design commissions) — please reach out.</span>
-    </p>
-    <div class="cv-cta">
-      <a href="contact.html" class="peach lang-block"><span data-lang="zh">聯絡 Solène</span><span data-lang="en">Contact Solène</span></a>
-      <a href="work.html" class="lang-block"><span data-lang="zh">看作品</span><span data-lang="en">View Work</span></a>
-    </div>
-  </section>
-
-  <div class="page-nav">
-    <a href="work.html" data-lang="zh">← Work</a>
-    <a href="work.html" data-lang="en" style="display:none">← Work</a>
-    <a href="contact.html" data-lang="zh">Contact →</a>
-    <a href="contact.html" data-lang="en" style="display:none">Contact →</a>
-  </div>
-
-  <div class="footer-meta">
-    <span>© 2025 Solène Su Cheng · 程昭漫</span>
-    <span>Built in Macao · 澳門</span>
-  </div>
 
 </main>
 
