@@ -201,16 +201,10 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
   color:rgba(28,26,24,.65);display:block;
 }
 
-/* 返回箭嘴 */
-.slide-back{
-  position:absolute;top:50%;left:40px;transform:translateY(-50%);
-  font-family:'Inter',sans-serif;font-weight:300;
-  font-size:18px;letter-spacing:0;text-transform:none;
-  color:#7ba89c;text-decoration:none;transition:color .3s;
-}
-.slide-back:hover{color:#1c1a18}
-
 @media (max-width:900px){
+  .site-nav{top:18px;left:20px;width:calc(100vw - 40px);font-size:14px;gap:8px 18px;flex-wrap:wrap;justify-content:flex-start;line-height:1.5}
+  .site-nav .name{font-size:16px;flex:0 0 100%}
+  .site-nav .sep{display:none}
   .work-tagline{top:92px;left:20px;right:20px;max-width:none;font-size:12px}
   .work-credit,.work-credit-r{bottom:24px;font-size:9px}
   .work-credit{left:20px}
@@ -222,20 +216,24 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
   .node.n3{top:52%;left:8%}
   .node.n4{top:66%;left:44%}
   .node.n5{top:80%;left:14%}
-  .gallery-slide{padding:96px 20px 72px}
+  .gallery-track{scroll-snap-type:x proximity;touch-action:pan-x;overscroll-behavior-x:contain;scroll-behavior:auto}
+  .gallery-slide{padding:96px 20px 96px;touch-action:pan-x}
   .slide-photo{width:70vw;max-height:58vh}
-  .slide-label{right:24px;bottom:24px}
+  .slide-label{left:24px;right:auto;bottom:72px;text-align:left;pointer-events:none}
   .slide-label .zh{font-size:15px}
-  .slide-back{top:auto;left:24px;bottom:24px;transform:none}
-  .tears-rail{padding:0 5vw;gap:20px;height:52vh;max-height:none}
+  .tears-rail{padding:0 5vw;gap:20px;height:52vh;max-height:none;scroll-snap-type:x proximity;touch-action:pan-x;overscroll-behavior-x:contain}
   .tears-frame.is-intro{margin-left:0}
   #instaRail .tears-frame.is-intro{margin-left:0}
-  .insta-scatter{width:100%;height:auto;min-height:calc(100vh - 168px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-content:center;overflow-y:auto;transform:none;padding:96px 20px 72px}
+  #g-insta{align-items:start;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;scroll-snap-align:start}
+  .insta-scatter{width:100%;height:auto;min-height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-content:start;overflow:visible;transform:none;padding:92px 20px 72px}
   .insta-photo,.insta-photo.p0,.insta-photo.p1,.insta-photo.p2,.insta-photo.p3,.insta-photo.p4,.insta-photo.p5,.insta-photo.p6,.insta-photo.p7{position:relative;left:auto;top:auto;width:100%;transform:none;box-shadow:0 10px 24px rgba(28,26,24,.05)}
-  .gallery-slide.fashion-slide{padding:112px 20px 96px}
-  .fashion-grid{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:22px}
-  .fashion-cell{height:42vw}
-  .fashion-cell.wide{grid-column:span 2}
+  .insta-photo.p0,.insta-photo.p1,.insta-photo.p2{grid-column:span 2}
+  .gallery-slide.fashion-slide{padding:112px 20px 128px;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
+  .fashion-grid{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:5px}
+  #g-insta::before,.gallery-slide.fashion-slide::before{content:"";position:fixed;top:0;left:0;right:0;height:118px;background:linear-gradient(to bottom,#fff 0%,#fff 78%,rgba(255,255,255,0) 100%);z-index:1000;pointer-events:none}
+  .fashion-cell{height:62vw}
+  .fashion-cell img{width:100%;height:100%;object-fit:contain}
+  .fashion-cell.wide{grid-column:span 2;height:42vw}
 }
 </style>
 </head>
@@ -279,7 +277,7 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
     <a class="node n5" href="https://instagram.com/anti.detox" target="_blank" rel="noopener">
       @anti detox
       <span class="zh">2018—now</span>
-      <span class="meta">Poem· Writing ↗</span>
+      <span class="meta">Poem· Writing -></span>
     </a>
   </div>
 </section>
@@ -304,7 +302,6 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
         <span class="zh">骨子</span>
         <span class="en">Knives · Exhibition · 2023-2025</span>
       </div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
 
     <!-- 2. TEARS — 內含 8 張水平滾動照片 -->
@@ -324,7 +321,6 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
         <span class="zh">私</span>
         <span class="en">Tears · Exhibition ·2021-2022</span>
       </div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
 
     <!-- 3. INSTA -->
@@ -343,12 +339,12 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
         <span class="zh">Insta & Polarid</span>
         <span class="en">2020—</span>
       </div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
 
     <!-- 4. FASHION PHOTOGRAPHY -->
     <div class="gallery-slide fashion-slide" id="g-sea">
       <div class="fashion-grid" aria-label="Fashion Photography image grid">
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_00.jpg" alt=""></figure>
         <figure class="fashion-cell"><img src="img_fashionphotography/fas_01.JPG" alt=""></figure>
         <figure class="fashion-cell"><img src="img_fashionphotography/fas_02.JPG" alt=""></figure>
         <figure class="fashion-cell"><img src="img_fashionphotography/fas_03.JPG" alt=""></figure>
@@ -368,7 +364,6 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
         <span class="zh">Fashion Photography</span>
         <span class="en"></span>
       </div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
 
   </div>
@@ -412,13 +407,32 @@ document.querySelectorAll('.node[data-target]').forEach(node => {
   });
 });
 
-// Back 按鈕 — 淡出作品，回到節點頁
-document.querySelectorAll('[data-back]').forEach(b => {
-  b.addEventListener('click', e => {
-    e.preventDefault();
-    galleryStage.classList.remove('is-active');
-    nodesStage.classList.remove('transitioning');
-  });
+function moveGalleryBy(direction){
+  const currentIndex = Math.round(galleryTrack.scrollLeft / window.innerWidth);
+  const maxIndex = galleryTrack.children.length - 1;
+  const nextIndex = Math.max(0, Math.min(maxIndex, currentIndex + direction));
+  if (nextIndex === currentIndex) return;
+  galleryTrack.scrollTo({left: galleryTrack.children[nextIndex].offsetLeft, behavior: 'smooth'});
+}
+
+document.querySelectorAll('.tears-rail').forEach(rail => {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  rail.addEventListener('touchstart', e => {
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  }, {passive:true});
+  rail.addEventListener('touchend', e => {
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    if (Math.abs(deltaX) < 42 || Math.abs(deltaX) < Math.abs(deltaY) * 1.15) return;
+    const atStart = rail.scrollLeft <= 2;
+    const atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
+    if (deltaX < 0 && atEnd) moveGalleryBy(1);
+    if (deltaX > 0 && atStart) moveGalleryBy(-1);
+  }, {passive:true});
 });
 
 

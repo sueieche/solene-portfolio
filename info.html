@@ -12,8 +12,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&family=Noto+Sans+TC:wght@200;300;400&family=Noto+Serif+TC:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <style>
-body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;background:linear-gradient(to bottom,#fff 0%,#fff 58%,rgba(255,255,255,0) 100%);z-index:999;pointer-events:none}
-.site-nav{position:fixed;top:22px;left:40px;z-index:1000;background:#fff;font-family:'Inter','Noto Sans TC',sans-serif}
+body::before{display:none}
+.site-nav{position:fixed;top:22px;left:40px;z-index:1001;background:#fff;font-family:'Inter','Noto Sans TC',sans-serif;isolation:isolate}
+.site-nav::before{content:"";position:fixed;top:0;left:0;right:0;height:118px;background:linear-gradient(to bottom,#fff 0%,#fff 78%,rgba(255,255,255,0) 100%);z-index:-1;pointer-events:none}
 .cv{padding:180px 40px 140px;max-width:1320px;margin:0 auto}
 .cv-section{margin-bottom:24px;padding-bottom:12px;border-bottom:0}
 .cv-section:last-child{border-bottom:0}
@@ -31,7 +32,10 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;backgrou
 .cv-row a{color:var(--teal);text-decoration:none}
 .cv-row a:hover{color:var(--ink)}
 @media (max-width:960px){
-  .cv{padding:120px 20px 80px}
+  .site-nav{top:18px;left:20px;width:calc(100vw - 40px);font-size:14px;gap:8px 18px;flex-wrap:wrap;justify-content:flex-start;line-height:1.5}
+  .site-nav .name{font-size:16px;flex:0 0 100%}
+  .site-nav .sep{display:none}
+  .cv{padding:120px 24px 80px}
   .cv-section .sec-head{margin-bottom:24px}
   .cv-bio,.cv-quote,.cv-row{font-size:12px}
   .cv-row{grid-template-columns:56px 1fr;gap:14px}
@@ -84,7 +88,7 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;backgrou
     <div class="cv-row">
       <span class="y">2022</span>
       <span class="d">
-        <b>澳門新女藝展群展 私 Tears Collection 8  — Macau New Woman Group Exhibition</b>
+        <b>澳門新女藝展群展 私 Tears Collection <br>Macau New Woman Group Exhibition</b>
         <span class="note">望廈山房 · 澳門 Macau</span>
       </span>
     </div>
@@ -92,17 +96,17 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;backgrou
       <span class="y">2020</span>
       <span class="d">
         <b>互動裝置《Focus to》  —  Interactive Programme </b>
-        <span class="note">第二十屆節目澳門城市藝穗節 20th Macao City Fringe Festival </span>
+        <span class="note">第二十屆節目澳門城市藝穗節<br>20th Macao City Fringe Festival</span>
       </span>
     </div>
     <div class="cv-row">
       <span class="y">2020</span>
-      <span class="d"><b>動態海報展《FEEEL MACAU》 Motion Poster Exhibition </b></span>
+      <span class="d"><b>動態海報展《FEEEL MACAU》<br>Motion Poster Exhibition</b></span>
     </div>
 
     <div class="cv-row">
       <span class="y">2018</span>
-      <span class="d"><b>立體書 Pop-up Book《Playground》— Young Ones Award Merit</b></span>
+      <span class="d"><b>立體書 Pop-up Book《Playground》<br>Young Ones Award Merit</b></span>
     </div>
   </section>
 

@@ -46,7 +46,7 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
 
 .splash .col{
   display:flex;flex-direction:column;justify-content:flex-start;
-  font-family:'Noto Sans TC',sans-serif;
+  font-family:'Inter','Noto Sans TC',sans-serif;
   font-weight:200;
   color:#7ba89c;
   font-size:13px;
@@ -136,33 +136,30 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   .splash-hint{left:32px;right:32px}
 }
 @media (max-width:700px){
-  /* mobile: 1 column, scrollable; show 4 cols (hide col 5 only) */
   .splash{
-    grid-template-columns:1fr;
-    gap:36px;
-    padding:100px 24px 280px;
-    overflow-y:auto;
-    align-content:start;
-    -webkit-overflow-scrolling:touch;
+    display:block;
+    padding:86px 28px 104px;
+    overflow:hidden;
+    text-align:center;
   }
-  .splash .col{font-size:15px;line-height:2.0;min-height:auto}
-  /* hide only col 5 on mobile */
-  .splash .col:nth-child(5){display:none}
+  .splash .col{display:none}
+  .splash #col1{display:flex;position:absolute;top:84px;left:28px;right:28px;bottom:44vh;padding-top:18px;font-size:13px;line-height:1.95;letter-spacing:.06em;color:#6f9f94;max-width:none;align-items:flex-start;justify-content:center;overflow:hidden}
+  .splash #col1 .line{white-space:pre-wrap;text-align:center}
   .splash-poster{
-    position:relative;
-    left:0;
+    position:absolute;
+    left:50%;
     right:auto;
-    bottom:auto;
-    width:min(76vw,420px);
-    margin-top:20px;
-    align-self:start;
+    bottom:92px;
+    transform:translateX(-50%);
+    width:min(68vw,330px);
+    margin:0;
   }
-  /* scroll hint on first load */
+  .splash-hint{top:22px;left:24px;right:24px;font-size:9px;letter-spacing:.24em;opacity:.55}
   .splash::after{
-    content:'↓ scroll';
-    position:absolute;bottom:120px;left:50%;transform:translateX(-50%);
-    font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;
-    color:var(--mute,#7ba89c);opacity:.5;pointer-events:none;
+    content:'click';
+    position:absolute;bottom:46px;left:50%;transform:translateX(-50%);
+    font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.34em;text-transform:uppercase;
+    color:#7ba89c;opacity:.55;pointer-events:none;
   }
 }
 </style>
@@ -296,8 +293,9 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   .home-spread{height:45vh;min-height:280px;grid-template-columns:1fr;grid-template-rows:1fr 1fr}
   .home-photo.left{grid-column:1;grid-row:1}
   .home-photo.right{grid-column:1;grid-row:2}
-  .home-meta{width:calc(100vw - 40px);margin:18px 20px 24px;padding:0;font-size:12px;gap:6px 10px;flex-wrap:wrap;justify-content:flex-start;line-height:1.45}
-  .home-meta .name{flex:0 0 100%}
+  .home-meta{width:calc(100vw - 40px);margin:20px 20px 26px;padding:0;font-size:14px;gap:8px 18px;flex-wrap:wrap;justify-content:flex-start;line-height:1.5}
+  .home-meta .name{flex:0 0 100%;font-size:16px}
+  .home-meta .sep{display:none}
 }
 </style>
 
@@ -453,8 +451,8 @@ The beginning is always the fin`,
     const visibleKeys = Object.keys(POEMS).filter(k => {
       const col = document.getElementById('col' + k);
       if (!col) return false;
-      if (isRound2Mobile) return parseInt(k) <= 4;  // mobile round 2: 4 poems
-      if (isMobile) return parseInt(k) <= 4;        // mobile round 1: only 4 cols (col5 hidden)
+      if (isRound2Mobile) return parseInt(k) === 1;  // mobile round 2: one readable poem
+      if (isMobile) return parseInt(k) === 1;        // mobile round 1: one readable poem
       return true;                                   // desktop: all columns
     });
     // first find max lines to know when typing finishes
@@ -477,7 +475,8 @@ The beginning is always the fin`,
       });
       lineEls.forEach((el, i) => {
         setTimeout(function(){
-          if (isRound2) typeCharsWithColor(el, '#7ba89c', ROUND2_COLOR);
+          if (isMobile) fadeLineIn(el, isRound2 ? ROUND2_COLOR : '#7ba89c');
+          else if (isRound2) typeCharsWithColor(el, '#7ba89c', ROUND2_COLOR);
           else typeChars(el);
         }, i * LINE_DELAY);
       });
@@ -497,6 +496,11 @@ The beginning is always the fin`,
       i++;
       if (i >= text.length) clearInterval(t);
     }, CHAR_DELAY);
+  }
+
+  function fadeLineIn(el, color){
+    el.style.color = color;
+    el.classList.add('in');
   }
 
   // per-char color tween — when a new char appears in round 2,
