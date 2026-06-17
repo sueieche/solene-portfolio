@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solène Su Cheng — 骨子 Knives</title>
+<title>Solène Su Cheng — Anti Detox</title>
 <meta name="description" content="Solène Su Cheng (程昭漫) — Macau-based artist. Photography × Words.">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<link rel="shortcut icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+TC:wght@100;200;300;400;500&family=Noto+Serif+TC:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&family=Noto+Sans+TC:wght@100;200;300;400;500&family=Noto+Serif+TC:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <style>
 html,body{background:#ffffff !important;background-color:#ffffff !important}
@@ -262,7 +265,7 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
   width:75vw;
   margin:22px 0 28px 40px;
   padding:0;
-  font-family:'Noto Sans TC','Inter',sans-serif;
+  font-family:'Inter','Noto Sans TC',sans-serif;
   font-weight:300;
   font-size:13px;
   letter-spacing:.04em;
@@ -285,18 +288,16 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
 .home-meta a:hover{color:#1c1a18}
 .home-meta a.active{color:#1c1a18;font-weight:400}
 .home-meta .sep{color:#7ba89c;opacity:.5;font-weight:200}
-.home-vvd{transition:transform 1.05s var(--ease)}
-.home.exit-to-work .home-vvd{transform:translateY(-55vh)}
-.home.exit-to-work .home-meta{opacity:1;transition:none}
 
 /* fix home scrollable if content taller than vh */
-.home{overflow-y:auto;height:100vh;height:100dvh;scroll-behavior:smooth}
+.home{overflow-y:auto;height:100vh;height:100dvh;scroll-behavior:auto}
 
 @media (max-width:900px){
   .home-spread{height:45vh;min-height:280px;grid-template-columns:1fr;grid-template-rows:1fr 1fr}
   .home-photo.left{grid-column:1;grid-row:1}
   .home-photo.right{grid-column:1;grid-row:2}
-  .home-meta{padding:18px 20px 24px;font-size:12px;gap:8px 14px}
+  .home-meta{width:calc(100vw - 40px);margin:18px 20px 24px;padding:0;font-size:12px;gap:6px 10px;flex-wrap:wrap;justify-content:flex-start;line-height:1.45}
+  .home-meta .name{flex:0 0 100%}
 }
 </style>
 
@@ -314,11 +315,11 @@ html,body{background:#ffffff !important;background-color:#ffffff !important}
     <span class="sep">—</span>
     <a href="index.html" class="active">Home</a>
     <span class="sep">—</span>
-    <a href="work.html" data-home-transition>Work</a>
+    <a href="work.html">Work</a>
     <span class="sep">—</span>
-    <a href="info.html" data-home-transition>Info</a>
+    <a href="info.html">Info</a>
     <span class="sep">—</span>
-    <a href="contact.html" data-home-transition>Shop</a>
+    <a href="contact.html">Shop</a>
   </nav>
 </div>
 
@@ -569,16 +570,6 @@ The beginning is always the fin`,
     });
   }
   splash.addEventListener('click', enterHome);
-  document.querySelectorAll('[data-home-transition]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      home.classList.add('exit-to-work');
-      setTimeout(() => {
-        window.location.href = link.href;
-      }, 1050);
-    });
-  });
-
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') enterHome();
   });

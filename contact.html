@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop — Solène Su Cheng</title>
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<link rel="shortcut icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Noto+Sans+TC:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <style>
 body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;background:linear-gradient(to bottom,#fff 0%,#fff 58%,rgba(255,255,255,0) 100%);z-index:999;pointer-events:none}
-.site-nav{z-index:1000;background:#fff}
+.site-nav{z-index:1000;background:#fff;font-family:'Inter','Noto Sans TC',sans-serif}
 .shop-page{
   min-height:100vh;
   display:grid;
@@ -32,15 +35,17 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;backgrou
 }
 .shop-note{
   margin:0;
-  font-family:'Noto Sans TC','Inter',sans-serif;
+  font-family:'Inter','Noto Sans TC',sans-serif;
   font-size:13px;
   font-weight:300;
   letter-spacing:.06em;
   color:#7ba89c;
 }
 @media (max-width:960px){
-  .shop-page{padding:100px 24px 72px}
-  .shop-image{width:min(76vw,420px);max-height:52vh}
+  .shop-page{padding:124px 24px 72px}
+  .shop-inner{gap:20px}
+  .shop-image{width:min(76vw,420px);max-height:48vh}
+  .shop-note{font-size:12px;text-align:center}
 }
 </style>
 </head>
@@ -61,7 +66,7 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;backgrou
 <main class="shop-page">
   <div class="shop-inner">
     <img class="shop-image" src="img_splash/splash_02.png" alt="">
-    <p class="shop-note">see you in August</p>
+    <p class="shop-note">BOOK! see you in August</p>
   </div>
 </main>
 

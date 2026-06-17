@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Work — Solène Su Cheng</title>
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<link rel="shortcut icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Noto+Sans+TC:wght@200;300;400&family=Noto+Serif+TC:wght@200;300&display=swap" rel="stylesheet">
@@ -11,6 +14,7 @@
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.site-nav{position:fixed;top:22px;left:40px;z-index:1000;background:#fff;font-family:'Inter','Noto Sans TC',sans-serif}
 
 /* ============== STAGE 1: 節點頁 ============== */
 .work-stage{
@@ -19,11 +23,13 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
   height:100vh;
   background:#fff;
   overflow:hidden;
+  transition:opacity .75s var(--ease),filter .75s var(--ease);
 }
+.work-stage.transitioning{opacity:.18;filter:blur(2px)}
 
 .work-tagline{
   position:absolute;top:80px;left:40px;max-width:300px;
-  font-family:'Noto Sans TC','Inter',sans-serif;font-weight:300;
+  font-family:'Inter','Noto Sans TC',sans-serif;font-weight:300;
   font-size:13px;line-height:1.85;letter-spacing:.04em;
   color:#1c1a18;
 }
@@ -69,26 +75,23 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
 .node.n4{top:62%;left:48%}
 .node.n5{top:74%;left:14%}
 
-/* 提示：往右滑 */
-.scroll-hint{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;
-  color:rgba(28,26,24,.4);text-transform:uppercase;
-  animation:slideRight 2s var(--ease) infinite alternate;
-}
-@keyframes slideRight{
-  0%{transform:translateX(calc(-50% - 6px))}
-  100%{transform:translateX(calc(-50% + 6px))}
-}
 
 /* ============== STAGE 2: Horizontal Gallery ============== */
 .gallery-stage{
-  position:relative;
+  position:fixed;
+  inset:0;
   width:100vw;
   height:100vh;
   overflow:hidden;
   background:#fff;
+  opacity:0;
+  pointer-events:none;
+  z-index:998;
+  transition:opacity .75s var(--ease);
 }
+.gallery-stage.is-active{opacity:1;pointer-events:auto}
+.gallery-stage::before{content:"";position:fixed;top:0;left:0;right:0;height:96px;background:linear-gradient(to bottom,#fff 0%,#fff 58%,rgba(255,255,255,0) 100%);z-index:999;pointer-events:none;opacity:0;transition:opacity .3s var(--ease)}
+.gallery-stage.is-fashion::before{opacity:1}
 .gallery-track{
   display:flex;
   height:100vh;
@@ -140,10 +143,33 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
   width:auto;
   display:block;
   object-fit:cover;
-  filter:saturate(.92) contrast(1.02);
+  filter:none;
   transition:transform 1.6s var(--ease),filter 1.2s var(--ease);
 }
 .tears-frame:hover img{transform:scale(1.03);filter:saturate(1) contrast(1.05)}
+.tears-frame.is-intro{margin-left:calc(47vw - 32.5vh)}
+#instaRail{height:45.5vh}
+#instaRail .tears-frame.is-intro{margin-left:calc(47vw - 22.75vh)}
+.insta-scatter{position:relative;width:100vw;height:100vh;overflow:hidden;transform:translate(-4vw,-5vh)}
+.insta-photo{position:absolute;display:block;background:#f3efe8;overflow:hidden;box-shadow:0 16px 40px rgba(28,26,24,.06);transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.insta-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:none}
+.insta-photo.keep-width img{object-fit:cover}
+.insta-photo:hover{transform:translateY(-4px) rotate(0deg);filter:none}
+.insta-photo.p0{width:22vw;aspect-ratio:4/3;left:7vw;top:17vh;transform:rotate(-2.5deg)}
+.insta-photo.p1{width:18vw;aspect-ratio:4/3;left:36vw;top:12vh;transform:rotate(1.5deg)}
+.insta-photo.p2{width:20vw;aspect-ratio:4/3;left:64vw;top:18vh;transform:rotate(-1deg)}
+.insta-photo.p3{width:13vw;aspect-ratio:3/4;left:12vw;top:48vh;transform:rotate(2deg)}
+.insta-photo.p4{width:16vw;aspect-ratio:4/5;left:33vw;top:56vh;transform:rotate(1deg)}
+.insta-photo.p5{width:13vw;aspect-ratio:4/5;left:55vw;top:48vh;transform:rotate(-2deg)}
+.insta-photo.p6{width:14vw;aspect-ratio:4/5;left:75vw;top:58vh;transform:rotate(1.8deg)}
+.insta-photo.p7{width:12vw;aspect-ratio:4/5;left:82vw;top:34vh;transform:rotate(-1.6deg)}
+.gallery-slide.fashion-slide{align-items:start;overflow-y:auto;padding:120px 60px 140px}
+.gallery-slide.fashion-slide::-webkit-scrollbar{display:none}
+.fashion-grid{width:84vw;display:grid;grid-template-columns:repeat(6,1fr);grid-auto-flow:row;grid-auto-rows:auto;column-gap:24px;row-gap:43px;align-items:start;justify-items:start}
+.fashion-cell{display:block;width:100%;height:18vw;overflow:hidden;background:transparent}
+.fashion-cell img{height:100%;width:auto;display:block;object-fit:contain;filter:none}
+.fashion-cell.wide{grid-column:span 2;width:100%}
+.fashion-cell.wide img{height:100%;width:auto;max-width:none}
 
 /* 每張照片：置中、portrait */
 .slide-photo{
@@ -155,7 +181,7 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
 }
 .slide-photo img{
   width:100%;height:100%;object-fit:cover;display:block;
-  filter:saturate(.92) contrast(1.02);
+  filter:none;
   transition:transform 1.8s var(--ease),filter 1.4s var(--ease);
 }
 .slide-photo:hover img{transform:scale(1.04);filter:saturate(1) contrast(1.05)}
@@ -175,40 +201,41 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
   color:rgba(28,26,24,.65);display:block;
 }
 
-/* 編號 + 上一個 / 下一個 */
-.slide-num{
-  position:absolute;bottom:80px;left:80px;
-  font-family:'Inter',sans-serif;font-weight:300;
-  font-size:10px;letter-spacing:.4em;color:rgba(28,26,24,.4);
-  text-transform:uppercase;
-}
+/* 返回箭嘴 */
 .slide-back{
-  position:absolute;top:80px;left:80px;
+  position:absolute;top:50%;left:40px;transform:translateY(-50%);
   font-family:'Inter',sans-serif;font-weight:300;
-  font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+  font-size:18px;letter-spacing:0;text-transform:none;
   color:#7ba89c;text-decoration:none;transition:color .3s;
 }
 .slide-back:hover{color:#1c1a18}
 
 @media (max-width:900px){
-  .work-tagline{top:64px;left:20px;right:20px;max-width:none;font-size:12px}
+  .work-tagline{top:92px;left:20px;right:20px;max-width:none;font-size:12px}
   .work-credit,.work-credit-r{bottom:24px;font-size:9px}
   .work-credit{left:20px}
   .work-credit-r{right:20px}
   .node{font-size:12px}
   .node .zh{font-size:10px}
-  .node.n1{top:22%;left:6%}
-  .node.n2{top:36%;left:54%}
-  .node.n3{top:50%;left:8%}
-  .node.n4{top:64%;left:48%}
-  .node.n5{top:78%;left:14%}
-  .slide-photo{width:70vw}
+  .node.n1{top:24%;left:6%}
+  .node.n2{top:38%;left:50%}
+  .node.n3{top:52%;left:8%}
+  .node.n4{top:66%;left:44%}
+  .node.n5{top:80%;left:14%}
+  .gallery-slide{padding:96px 20px 72px}
+  .slide-photo{width:70vw;max-height:58vh}
   .slide-label{right:24px;bottom:24px}
   .slide-label .zh{font-size:15px}
-  .slide-num,.slide-back{left:24px}
-  .slide-num{bottom:24px}
-  .slide-back{top:24px}
-  .tears-rail{padding:0 5vw;gap:20px;height:55vh}
+  .slide-back{top:auto;left:24px;bottom:24px;transform:none}
+  .tears-rail{padding:0 5vw;gap:20px;height:52vh;max-height:none}
+  .tears-frame.is-intro{margin-left:0}
+  #instaRail .tears-frame.is-intro{margin-left:0}
+  .insta-scatter{width:100%;height:auto;min-height:calc(100vh - 168px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-content:center;overflow-y:auto;transform:none;padding:96px 20px 72px}
+  .insta-photo,.insta-photo.p0,.insta-photo.p1,.insta-photo.p2,.insta-photo.p3,.insta-photo.p4,.insta-photo.p5,.insta-photo.p6,.insta-photo.p7{position:relative;left:auto;top:auto;width:100%;transform:none;box-shadow:0 10px 24px rgba(28,26,24,.05)}
+  .gallery-slide.fashion-slide{padding:112px 20px 96px}
+  .fashion-grid{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:22px}
+  .fashion-cell{height:42vw}
+  .fashion-cell.wide{grid-column:span 2}
 }
 </style>
 </head>
@@ -232,27 +259,27 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
     <a class="node n1" data-target="g-knives">
       Knives
       <span class="zh">骨子 · 2023—2025</span>
-      <span class="meta">Photography · Words · Solo Show</span>
+      <span class="meta">photography · Words · Solo Exhibition</span>
     </a>
     <a class="node n2" data-target="g-tears">
       Tears
-      <span class="zh">淚 · 2022</span>
-      <span class="meta">Lyrical Photography · Image Poem</span>
+      <span class="zh">私 · 2021-2022</span>
+      <span class="meta">lyrical Photography </span>
     </a>
     <a class="node n3" data-target="g-insta">
       Insta &amp; Polarid
-      <span class="zh">Instagram · Polarid · 2020—</span>
-      <span class="meta">Daily Archive · Self-publishing</span>
+      <span class="zh">archive</span>
+      <span class="meta"></span>
     </a>
     <a class="node n4" data-target="g-sea">
-      Sea Sea Sea –1
-      <span class="zh">Sea Sea Sea · 2023</span>
-      <span class="meta">Photography · Macau Coast</span>
+      Fashion Photography
+      <span class="zh">creative work</span>
+      <span class="meta"></span>
     </a>
     <a class="node n5" href="https://instagram.com/anti.detox" target="_blank" rel="noopener">
-      Anti Detox
-      <span class="zh">@anti.detox · 2018—</span>
-      <span class="meta">Private Writing · Ongoing · IG ↗</span>
+      @anti detox
+      <span class="zh">2018—now</span>
+      <span class="meta">Poem· Writing ↗</span>
     </a>
   </div>
 </section>
@@ -263,19 +290,27 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
 
     <!-- 1. KNIVES -->
     <div class="gallery-slide" id="g-knives">
-      <div class="slide-photo"><img src="img_web/d1adfdb5__4327301a-24a6-47a4-9413-8d867b7eddf2.jpg" alt=""></div>
+      <div class="tears-rail" id="knivesRail">
+        <div class="tears-frame is-intro"><img src="img_knives/knives_00.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_knives/knives_01.JPG" alt=""></div>
+        <div class="tears-frame"><img src="img_knives/knives_02.JPG" alt=""></div>
+        <div class="tears-frame"><img src="img_knives/knives_03.JPG" alt=""></div>
+        <div class="tears-frame"><img src="img_knives/knives_04.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_knives/knives_05.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_knives/knives_06.jpg" alt=""></div>
+        <div class="tears-frame"><img src="img_knives/knives_07.JPG" alt=""></div>
+      </div>
       <div class="slide-label">
         <span class="zh">骨子</span>
-        <span class="en">Knives · 2025</span>
+        <span class="en">Knives · Exhibition · 2023-2025</span>
       </div>
-      <div class="slide-num">01 / 05</div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
+      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
 
     <!-- 2. TEARS — 內含 8 張水平滾動照片 -->
     <div class="gallery-slide" id="g-tears">
       <div class="tears-rail" id="tearsRail">
-        <div class="tears-frame"><img src="img_tears/tear_00.jpg" alt=""></div>
+        <div class="tears-frame is-intro"><img src="img_tears/tear_00.jpg" alt=""></div>
         <div class="tears-frame"><img src="img_tears/tears_01.jpg" alt=""></div>
         <div class="tears-frame"><img src="img_tears/tears_02.jpg" alt=""></div>
         <div class="tears-frame"><img src="img_tears/tears_03.jpg" alt=""></div>
@@ -286,51 +321,55 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
         <div class="tears-frame"><img src="img_tears/tears_08.jpg" alt=""></div>
       </div>
       <div class="slide-label">
-        <span class="zh">淚</span>
-        <span class="en">Tears · 2022 · 1/8</span>
+        <span class="zh">私</span>
+        <span class="en">Tears · Exhibition ·2021-2022</span>
       </div>
-      <div class="slide-num">02 / 05</div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
+      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
 
     <!-- 3. INSTA -->
     <div class="gallery-slide" id="g-insta">
-      <div class="slide-photo" style="background:#ebe5db;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:'Noto Sans TC',sans-serif;font-weight:200;font-size:13px;letter-spacing:.16em;color:rgba(28,26,24,.4)">圖庫後補</span>
+      <div class="insta-scatter" aria-label="Insta & Polarid image field">
+        <figure class="insta-photo keep-width p0"><img src="img_insta/insta_00.png" alt=""></figure>
+        <figure class="insta-photo keep-width p1"><img src="img_insta/insta_01.png" alt=""></figure>
+        <figure class="insta-photo keep-width p2"><img src="img_insta/insta_02.png" alt=""></figure>
+        <figure class="insta-photo keep-width p3"><img src="img_insta/insta_03.jpg" alt=""></figure>
+        <figure class="insta-photo p4"><img src="img_insta/insta_04.jpg" alt=""></figure>
+        <figure class="insta-photo p5"><img src="img_insta/insta_05.jpg" alt=""></figure>
+        <figure class="insta-photo p6"><img src="img_insta/insta_06.jpg" alt=""></figure>
+        <figure class="insta-photo p7"><img src="img_insta/insta_07.jpg" alt=""></figure>
       </div>
       <div class="slide-label">
         <span class="zh">Insta & Polarid</span>
-        <span class="en">Insta & Polarid · 2020—</span>
+        <span class="en">2020—</span>
       </div>
-      <div class="slide-num">03 / 05</div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
+      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
 
-    <!-- 4. SEA -->
-    <div class="gallery-slide" id="g-sea">
-      <div class="slide-photo" style="background:#ebe5db;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:'Noto Sans TC',sans-serif;font-weight:200;font-size:13px;letter-spacing:.16em;color:rgba(28,26,24,.4)">圖庫後補</span>
+    <!-- 4. FASHION PHOTOGRAPHY -->
+    <div class="gallery-slide fashion-slide" id="g-sea">
+      <div class="fashion-grid" aria-label="Fashion Photography image grid">
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_01.JPG" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_02.JPG" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_03.JPG" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_04.JPG" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_05.jpg" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_06.jpg" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_07.jpg" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_08.jpg" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_09.jpg" alt=""></figure>
+        <figure class="fashion-cell wide"><img src="img_fashionphotography/fas_10.JPEG" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_11.jpg" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_12.jpg" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_13.jpg" alt=""></figure>
+        <figure class="fashion-cell"><img src="img_fashionphotography/fas_14.jpg" alt=""></figure>
       </div>
       <div class="slide-label">
-        <span class="zh">Sea Sea Sea</span>
-        <span class="en">Sea Sea Sea –1 · 2023</span>
+        <span class="zh">Fashion Photography</span>
+        <span class="en"></span>
       </div>
-      <div class="slide-num">04 / 05</div>
-      <a class="slide-back" href="#stage-nodes" data-back>↑ Back to nodes</a>
+      <a class="slide-back" href="#stage-nodes" data-back>↑</a>
     </div>
-
-    <!-- 5. ANTI DETOX — IG external link -->
-    <a class="gallery-slide" id="g-antidetox" href="https://instagram.com/anti.detox" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
-      <div class="slide-photo" style="background:#ebe5db;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:'Inter',sans-serif;font-weight:200;font-size:13px;letter-spacing:.16em;color:rgba(28,26,24,.4)">@anti.detox</span>
-      </div>
-      <div class="slide-label">
-        <span class="zh">Anti Detox</span>
-        <span class="en">@anti.detox ↗ Instagram</span>
-      </div>
-      <div class="slide-num">05 / 05</div>
-      <span class="slide-back" style="cursor:pointer">Click → Open Instagram</span>
-    </a>
 
   </div>
 </section>
@@ -349,27 +388,43 @@ body{margin:0;background:#fff;color:#1c1a18;font-family:'Inter','Noto Sans TC',s
   setTimeout(reveal, 100);
 })();
 
-// 點節點 → 切到 gallery stage 並滑到對應 slide
+// 點節點 → 淡出節點頁，直接淡入對應作品（不滾動頁面）
+const galleryStage = document.getElementById('stage-gallery');
+const galleryTrack = document.getElementById('galleryTrack');
+const nodesStage = document.getElementById('stage-nodes');
+function updateFashionNavGradient(){
+  const fashionSlide = document.getElementById('g-sea');
+  const fashionActive = fashionSlide && Math.abs(galleryTrack.scrollLeft - fashionSlide.offsetLeft) < window.innerWidth * 0.5;
+  galleryStage.classList.toggle('is-fashion', fashionActive);
+}
 document.querySelectorAll('.node[data-target]').forEach(node => {
   node.addEventListener('click', e => {
     e.preventDefault();
     const targetId = node.dataset.target;
-    const stage = document.getElementById('stage-gallery');
-    const track = document.getElementById('galleryTrack');
     const slide = document.getElementById(targetId);
-    stage.scrollIntoView({behavior:'smooth'});
+    nodesStage.classList.add('transitioning');
+    if (slide) galleryTrack.scrollLeft = slide.offsetLeft;
     setTimeout(() => {
-      if (slide) track.scrollTo({left: slide.offsetLeft, behavior:'smooth'});
-    }, 600);
+      galleryStage.classList.add('is-active');
+      updateFashionNavGradient();
+      setTimeout(() => nodesStage.classList.remove('transitioning'), 760);
+    }, 360);
   });
 });
 
-// Back 按鈕 — 回到節點頁
+// Back 按鈕 — 淡出作品，回到節點頁
 document.querySelectorAll('[data-back]').forEach(b => {
   b.addEventListener('click', e => {
     e.preventDefault();
-    document.getElementById('stage-nodes').scrollIntoView({behavior:'smooth'});
+    galleryStage.classList.remove('is-active');
+    nodesStage.classList.remove('transitioning');
   });
+});
+
+
+galleryTrack.addEventListener('scroll', () => {
+  if (!galleryStage.classList.contains('is-active')) return;
+  updateFashionNavGradient();
 });
 </script>
 <script src="site.js"></script>
